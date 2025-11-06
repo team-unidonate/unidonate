@@ -1,0 +1,211 @@
+/* ====== Reset/vars ====== */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+:root{
+  --primary:#66D575;
+  --primary-strong:#41ba5d;
+  --baby:#A2CFFE;
+  --ink:#0f172a;
+  --muted:#475569;
+  --line:#e5e7eb;
+  --bg:#ffffff;
+  --card:#ffffff;
+  --shadow: 0 10px 24px rgba(0,0,0,.08);
+  --radius: 16px;
+}
+
+/* ====== Base ====== */
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.45;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ====== Header ====== */
+header{
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 18px;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+header .Logo { height: 64px; padding: 0; margin: 0; }
+header nav { display: flex; gap: 16px; font-weight: 600; }
+header nav a { padding: 8px 10px; border-radius: 10px; }
+header nav a:hover { background: #f8fafc; }
+.menu-toggle{ display: none; border: 1px solid var(--line); background: #fff; border-radius: 12px; padding: 8px 10px; font-size: 18px; line-height: 1; cursor: pointer; }
+
+/* Compensa el header fijo cuando saltas a IDs */
+main > * { scroll-margin-top: 90px; }
+
+/* ====== Secciones Principales ====== */
+.Titulo{
+  padding: 64px 18px 40px;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(255,255,255,.2), rgba(255,255,255,.2)),
+              linear-gradient(135deg, #c8f2da, #bde0ff);
+}
+.Titulo h1{ margin: 0 0 10px; font-size: clamp(28px, 4vw, 40px); font-weight: 800; }
+.Titulo p{ margin: 0 auto; color: var(--muted); max-width: 900px; font-size: 18px; }
+.Titulo .Donar-Ahora,
+.Titulo .Buscar-Objetos{
+  display: inline-flex; align-items: center; justify-content: center;
+  margin: 18px 8px 0; padding: 12px 18px; border-radius: 12px;
+  font-weight: 700; border: 1px solid transparent; box-shadow: var(--shadow);
+}
+.Titulo .Donar-Ahora{ background: var(--primary); color: #fff; }
+.Titulo .Donar-Ahora:hover{ background: var(--primary-strong); }
+.Titulo .Buscar-Objetos{ background: var(--baby); color: #fff; border-color: var(--baby); }
+.Titulo .Buscar-Objetos:hover{ background-color: #7388b8; }
+
+.Elegirnos{ padding: 60px 18px 20px; text-align: center; }
+.Elegirnos h2{ margin: 0 0 6px; font-size: 30px; font-weight: 800; }
+.Elegirnos > p{ margin: 0 auto 20px; max-width: 820px; color: var(--muted); }
+.Elegirnos article{ display: inline-block; vertical-align: top; width: min(100%, 360px); margin: 10px; padding: 18px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); box-shadow: var(--shadow); text-align: left; user-select: none; transition: transform 0.3s ease; }
+.Elegirnos article:hover{ transform: translateY(-4px); }
+.Elegirnos article h3{ margin: 0 0 8px; font-size: 18px; }
+.Elegirnos article p{ margin: 0; color: #334155; }
+
+.ComoFunciona{ padding: 60px 18px; text-align: center; background: linear-gradient(120deg, #cdf2de 0%, #c6e7ff 100%); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.ComoFunciona h2{ margin: 0 0 6px; font-size: 28px; font-weight: 800; }
+.ComoFunciona > p{ margin: 0 0 16px; color: var(--muted); }
+.ComoFunciona article{ display: inline-block; width: min(100%, 320px); margin: 10px; padding: 16px 16px 18px; border-radius: var(--radius); border: 1px solid var(--line); background: #fff; text-align: left; user-select: none; transition: transform 0.3s ease; }
+.ComoFunciona article:hover { transform: translateY(-8px); }
+.ComoFunciona article h3:first-child{ display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 999px; background: #bfeeda; color: #0b1020; font-weight: 800; margin: 0 0 8px; border: 2px solid #b6e6ce; }
+.ComoFunciona article h3:nth-of-type(2){ margin: 0 0 6px; font-size: 18px; }
+.ComoFunciona article p{ margin: 0; color: #334155; }
+
+.Sobre_Nosotros{ padding: 60px 18px 30px; text-align: center; }
+.Sobre_Nosotros h2{ margin: 0 0 10px; font-size: 28px; font-weight: 800; }
+#parrafo_nosotros1, #parrafo_nosotros2{ margin: 10px auto; max-width: 900px; color: #374151; }
+
+.Contactanos{ padding: 60px 18px 70px; text-align: center; background: linear-gradient(180deg, #cfe8ff 0%, #e7f3ff 100%); border-top: 1px solid var(--line); }
+.Contactanos article{ max-width: 820px; margin: 0 auto; text-align: left; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
+.Contactanos form label{ font-weight: 600; color: #0b1020; }
+.Contactanos form input[type="text"], .Contactanos form input[type="email"]{ width: 100%; padding: 12px 14px; margin: 6px 0 12px; border: 1px solid #d1d5db; border-radius: 12px; background: #f6fff9; font: inherit; }
+.Contactanos article button{ display: inline-flex; align-items: center; justify-content: center; padding: 12px 18px; border-radius: 12px; border: 1px solid transparent; background: var(--primary); color: #fff; font-weight: 700; cursor: pointer; }
+.Contactanos article button:hover{ background: var(--primary-strong); }
+
+/* ====== Footer ====== */
+footer{ display: grid; grid-template-columns: auto 1fr 1fr 1fr; grid-template-areas: "logo  links1 links2 links3" "desc  links1 links2 links3" "line  line   line   line" "copy  copy   copy   copy"; gap: 16px 28px; align-items: start; padding: 26px 18px 20px; background: #212121; color: #dbeafe; }
+footer > img   { grid-area: logo; height:64px; display:block; }
+footer > span  { grid-area: desc; color:#9aa5b1; max-width:380px; }
+footer > article:nth-of-type(1) { grid-area: links1; }
+footer > article:nth-of-type(2) { grid-area: links2; }
+footer > article:nth-of-type(3) { grid-area: links3; }
+footer article h4{ margin:0 0 8px; color:#fff; }
+footer article a{ display:block; color:#cfe0ff; margin:4px 0; }
+footer article a:hover{ text-decoration:underline; }
+footer hr     { grid-area: line; border:none; border-top:1px solid #AAF0D1; margin:16px 0 10px; }
+footer small { grid-area: copy; color:#aab4c2; text-align: center; }
+
+/* ====== Modal de Términos y Condiciones ====== */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  /* ✨ CORRECCIÓN CLAVE: Permite hacer clic a través del overlay cuando está oculto ✨ */
+  pointer-events: none;
+}
+.overlay.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto; /* Reactiva los clics cuando está visible */
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  z-index: 110;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  transition: transform 0.4s ease-out;
+  pointer-events: none; /* También ignora clics cuando está oculto */
+}
+.modal.visible {
+  transform: translateY(0);
+  pointer-events: auto; /* Reactiva los clics cuando está visible */
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 0 16px 0 0;
+}
+.modal-header h2 { font-size: 20px; margin: 0; color: #000 }
+.modal-header p { font-size: 14px; color: #000; margin: 0; }
+.modal-content { flex-grow: 1; overflow-y: auto; padding: 24px; }
+.modal-content h4 { margin: 24px 0 8px; font-size: 16px; color: #000;}
+.modal-content p { margin: 0; line-height: 1.6; color: #000; }
+.modal-content h4:first-child { margin-top: 0; }
+.modal-content ul { padding-left: 20px; margin: 0 0 16px; color: #000; }
+
+/* ====== Estilos Responsive ====== */
+@media (min-width: 640px) {
+  /* Estilos para el modal en pantallas grandes */
+  .modal {
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    max-width: 500px;
+    height: 80vh;
+    border-radius: var(--radius);
+    transform: translate(-50%, -50%) scale(0.95);
+    opacity: 0;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  }
+  .modal.visible {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 960px){
+  footer { grid-template-columns: 1fr; grid-template-areas: "logo" "desc" "links1" "links2" "links3" "line" "copy"; }
+}
+
+@media (max-width: 860px){
+  header .Logo { height: 48px; }
+  .menu-toggle{ display: inline-block; }
+  header nav{
+    display: none; position: absolute; right: 18px; top: calc(100% + 8px);
+    background: #fff; border: 1px solid var(--line); border-radius: 14px;
+    padding: 12px; box-shadow: var(--shadow); flex-direction: column;
+    gap: 8px; min-width: 220px; z-index: 60;
+  }
+  header nav.open{ display: flex; }
+  header nav a{ padding: 10px 12px; border-radius: 10px; }
+  header nav a:hover{ background: #f8fafc; }
+}
+
+@media (max-width: 600px){
+  footer {
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas: "logo links1" "desc links1" "links2 links3" "line line" "copy copy";
+    }
+}
