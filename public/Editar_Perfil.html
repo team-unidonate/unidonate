@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Editar Perfil - UniDonate</title>
+  <link rel="stylesheet" href="assets/styles/Editar_Perfil.css" />
+</head>
+<body>
+  <header>
+    <a href="Home.html" aria-label="Volver al Home">
+      <img class="Logo" src="assets/images/Logo.png" alt="UniDonate">
+    </a>
+    <nav aria-label="Principal">
+      <a href="Home.html">Home</a>
+      <a href="Explorar.html">Explorar</a>
+      <a href="Publicar.html">Publicar</a>
+      <a href="Conversaciones.html">Chat</a>
+      <a href="Ayuda.html">Ayuda</a>
+      <a href="Profile.html" id="perfilBtn" class="Perfil">Perfil</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  </header>
+
+  <div id="perfilPopover" class="profile-popover" role="menu" aria-hidden="true">
+    <div class="profile-popover__header"><div class="profile-popover__avatar" aria-hidden="true">👤</div></div>
+    <ul class="profile-popover__list">
+       <li><a href="Profile.html" role="menuitem" tabindex="-1">Editar Perfil</a></li>
+      <li><a href="Historial.html" role="menuitem" tabindex="-1">Ver Historial</a></li>
+      <li><a href="Notificaciones.html" role="menuitem" tabindex="-1">Notificaciones</a></li>
+    </ul>
+    <a href="index.html" type="button" class="btn-logout">Cerrar sesión</a>
+  </div>
+
+  <main class="edit-profile-page">
+    <div class="card form-container">
+      <h1>Editar Perfil</h1>
+      <form id="edit-profile-form" class="profile-grid">
+        <div class="picture-section">
+          <label for="photo-upload" class="image-uploader">
+            <img src="assets/images/img_juan.jpg" alt="Vista previa del perfil" id="photo-preview">
+            <div class="uploader-icon">+</div>
+          </label>
+          <input type="file" id="photo-upload" accept="image/*" hidden>
+          <button type="button" class="btn btn--danger">ELIMINAR PERFIL</button>
+        </div>
+
+        <div class="fields-section">
+          <div class="form-group">
+            <label for="username">Nombre de Usuario:</label>
+            <input type="text" id="username" value="Juan Pérez">
+          </div>
+          <div class="form-group">
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" value="Contraseña123" disabled>
+          </div>
+          <div class="form-group">
+            <label for="email">Correo electronico:</label>
+            <input type="email" id="email" value="ejemplocorreo@gmail.com">
+          </div>
+          <div class="form-group">
+            <label for="new-password">Nueva contraseña:</label>
+            <input type="password" id="new-password" placeholder="Ingresar contraseña">
+          </div>
+          <div class="form-group dropdown-container">
+            <label for="sede-btn">Sede:</label>
+            <button type="button" id="sede-btn" class="dropdown-toggle" data-target="sede-menu">
+              <span class="dropdown-value">Seleccionar Sede</span>
+              <span class="dropdown-arrow">V</span>
+            </button>
+            <ul id="sede-menu" class="dropdown-menu">
+              <li><a href="#">Monterrico</a></li>
+              <li><a href="#">San Isidro</a></li>
+              <li><a href="#">Villa</a></li>
+              <li><a href="#">San Miguel</a></li>
+            </ul>
+          </div>
+        </div>
+      </form>
+      <div class="form-actions">
+        <a href="Profile.html" class="btn btn--secondary">VOLVER</a>
+        <button type="submit" form="edit-profile-form" class="btn btn--primary">GUARDAR CAMBIOS</button>
+      </div>
+    </div>
+  </main>
+    <footer>
+    <img src="assets/images/Logo.png" height="100" alt="UniDonate">
+    <span>
+      Plataforma de donaciones universitarias<br>
+      para una comunidad más sostenible y<br>
+      colaborativa.
+    </span>
+    <article>
+      <h4>Enlaces Rápidos</h4>
+      <a href="#">Inicio</a>
+      <a href="#">Cómo Funciona</a>
+      <a href="#">Nosotros</a>
+      <a href="#">Ayuda</a>
+    </article>
+    <article>
+      <h4>Legal</h4>
+      <a href="#" id="terms-link"> Terminos y Condiciones </a>
+      <a href="#" id="privacy-link"> Politica de Privacidad </a>
+    </article>
+    <article>
+      <h4>Contáctanos</h4>
+      <p>Email: contacto@unidonate.com</p>
+      <p>Teléfono: +51 000 000 000</p>
+    </article>
+    <hr>
+    <small>&copy; 2025 UniDonate. Todos los derechos reservados</small>
+  </footer>
+
+  <script src="assets/scripts/Editar_Perfil.js" defer></script>
+</body>
+</html>
