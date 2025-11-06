@@ -1,0 +1,170 @@
+/* ===== Reset / Vars (ESTILO UNIFICADO) ===== */
+*{ box-sizing:border-box }
+html,body{ margin:0; padding:0 }
+:root{
+  --primary:#66D575; --primary-strong:#41ba5d; --ink:#0f172a; --muted:#5b6570;
+  --line:#e5e7eb; --bg:#ffffff; --shadow:0 12px 28px rgba(0,0,0,.08);
+  --radius:16px; --radius-large: 40px;
+}
+body{ font-family:system-ui,-apple-system,sans-serif; color:var(--ink); line-height:1.45;}
+a, button { color:inherit; text-decoration:none }
+
+/* ===== Componentes Globales ===== */
+.btn { display: inline-block; padding: 10px 20px; border-radius: 10px; font-weight: 600; cursor: pointer; border: none; text-align: center; transition: background-color 0.2s; }
+.btn--primary { background-color:var(--primary); color:#fff; }
+.btn--secondary { background-color: #e5e7eb; color: var(--ink); }
+.btn--cancel { background-color:#f1f5f9; color:var(--ink); }
+.card { background-color: var(--bg); border-radius: var(--radius); padding: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+
+/* ===== Header y Popover (ESTILO UNIFICADO) ===== */
+header{ position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:10px 18px; background:rgba(255,255,255,.92); backdrop-filter:saturate(180%) blur(10px); border-bottom:1px solid var(--line); }
+.Logo{ height:64px; }
+header nav{ display:flex; gap:16px; font-weight:600; }
+header nav a{ padding:8px 10px; border-radius:10px; }
+header nav a:hover{ background:#f8fafc; }
+header nav .active{ color:var(--primary-strong); font-weight: 700; }
+header nav .Perfil{ background:var(--primary); color:#fff; padding:8px 16px; border-radius:10px; }
+header nav .Perfil.active, header nav .Perfil:hover { background:var(--primary-strong); }
+.menu-toggle{ display:none; border:1px solid var(--line); background:#fff; border-radius:12px; padding:8px 10px; font-size:18px; line-height:1; cursor:pointer; }
+.profile-popover{ position:fixed; top:72px; right:18px; width:260px; background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow); padding:12px 14px; z-index:80; display:none; }
+.profile-popover.open{ display:block; }
+.profile-popover__header{ display:flex; justify-content:center; padding:6px 0 10px; }
+.profile-popover__avatar{ width:52px; height:52px; border-radius:50%; display:grid; place-items:center; background:#f1f5f9; border:1px solid var(--line); font-size:24px; }
+
+.profile-list{ list-style:none; padding:0; margin:10px 0 12px; }
+.profile-list li{ margin:4px 0; }
+.profile-list a{ display:block; padding:10px 10px; border-radius:10px; color:var(--ink); }
+.profile-list a:hover{ background:#f8fafc; }
+.btn-logout {
+  display: block; /* Le decimos que ocupe su propia línea */
+  width: 80%; /* Mantenemos el ancho que definiste */
+  margin-left: auto; /* Margen automático a la izquierda */
+  margin-right: auto; /* Margen automático a la derecha */
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 0;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center; /* Asegura que el texto dentro del botón esté centrado */
+}
+.btn-logout:hover{ background:var(--primary-strong); }
+/* ===== Página de Chat ===== */
+.chat-page { display: flex; justify-content: center; align-items: center; padding: 40px 24px; min-height: calc(100vh - 85px - 280px); background: linear-gradient(160deg, #d1fae5 0%, #dbeafe 100%);}
+.conversations-container { width: 100%; max-width: 450px; background-color: var(--bg); border-radius: var(--radius-large); padding: 32px 24px; box-shadow: 0 16px 40px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.1); }
+.conversations-container__title { text-align: center; font-size: 16px; font-weight: 600; color: var(--muted); letter-spacing: 0.5px; margin: 0 0 24px; }
+.conversations-list { display: flex; flex-direction: column; gap: 16px; }
+
+/* Items de Conversación */
+.chat-item { text-align: center; padding: 16px 20px; border-radius: var(--radius); border: 1px solid var(--line); cursor: pointer; transition: all 0.2s ease; }
+.chat-item:hover { border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.chat-item__title { font-weight: 600; font-size: 18px; }
+.chat-item__status { display: block; font-size: 14px; color: #60a5fa; margin-top: 4px; }
+.chat-item.state--entregado { background-color: var(--primary); color: #fff; border-color: var(--primary); }
+.chat-item.state--entregado .chat-item__status { color: rgba(255,255,255,0.9); }
+
+/* ===== Overlay y Pop-up de Acciones ===== */
+.overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:90; opacity:0; visibility:hidden; transition:opacity 0.3s ease; }
+.overlay.visible { opacity:1; visibility:visible; }
+.action-popup { position:fixed; top:50%; left:50%; transform:translate(-50%, -50%) scale(0.95); z-index:100; width:90%; max-width:400px; text-align:center; opacity:0; visibility:hidden; transition:all 0.3s ease; }
+.action-popup.visible { opacity:1; visibility:visible; transform:translate(-50%, -50%) scale(1); }
+.action-popup__title { font-size: 20px; margin: 0 0 24px; }
+.btn--secondary,.btn--cancel{background: #A2CFFE; color: white;}
+.action-popup__buttons { display:flex; flex-direction:column; gap:12px; }
+
+/* ===== Footer (UNIFICADO) ===== */
+footer{
+  display:grid;
+  grid-template-columns:auto 1fr 1fr 1fr;
+  grid-template-areas:
+    "logo links1 links2 links3"
+    "desc links1 links2 links3"
+    "line line   line   line"
+    "copy copy   copy   copy";
+  gap:16px 28px; align-items:start;
+  padding:20px 18px; background:#fff; color:#8F8C8C; margin-top:16px;
+}
+footer > img{ grid-area:logo; height:64px; display:block }
+footer > span{ grid-area:desc; color:#8F8C8C; max-width:380px }
+footer > article:nth-of-type(1){ grid-area:links1; min-width:220px }
+footer > article:nth-of-type(2){ grid-area:links2; min-width:220px }
+footer > article:nth-of-type(3){ grid-area:links3; min-width:220px }
+footer article h4{ margin:0 0 8px; color:#212121; font-weight:700 }
+footer article a{ display:block; color:#8F8C8C; margin:4px 0 }
+footer article a:hover{ text-decoration:underline }
+footer hr{ grid-area:line; border:none; border-top:1px solid var(--primary); margin:8px 0 10px }
+footer small{ grid-area:copy; color:#8F8C8C; text-align:center }
+
+
+/* ====== Modal de Términos y Condiciones ====== */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  /* ✨ CORRECCIÓN CLAVE: Permite hacer clic a través del overlay cuando está oculto ✨ */
+  pointer-events: none;
+}
+.overlay.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto; /* Reactiva los clics cuando está visible */
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  z-index: 110;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  transition: transform 0.4s ease-out;
+  pointer-events: none; /* También ignora clics cuando está oculto */
+}
+.modal.visible {
+  transform: translateY(0);
+  pointer-events: auto; /* Reactiva los clics cuando está visible */
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 0 16px 0 0;
+}
+.modal-header h2 { font-size: 20px; margin: 0; color: #000 }
+.modal-header p { font-size: 14px; color: #000; margin: 0; }
+.modal-content { flex-grow: 1; overflow-y: auto; padding: 24px; }
+.modal-content h4 { margin: 24px 0 8px; font-size: 16px; color: #000;}
+.modal-content p { margin: 0; line-height: 1.6; color: #000; }
+.modal-content h4:first-child { margin-top: 0; }
+.modal-content ul { padding-left: 20px; margin: 0 0 16px; color: #000; }
+
+
+
+/* ===== Responsive ===== */
+@media (max-width: 860px){
+  .menu-toggle{ display:inline-block }
+  header nav{ display:none; position:absolute; right:18px; top:calc(100% + 8px); background:#fff; border:1px solid var(--line); border-radius:14px; padding:12px; box-shadow:var(--shadow); flex-direction:column; gap:8px; min-width:220px; z-index:60; }
+  header nav.open{ display:flex }
+  footer { grid-template-columns: 1fr; grid-template-areas: "logo" "desc" "links1" "links2" "links3" "line" "copy"; }
+}
