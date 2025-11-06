@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="assets/styles/Login.css">
+</head>
+<body>
+  <header>
+    <a href="index.html" aria-label="Volver a la landing">
+      <img class="Logo" src="assets/images/Logo.png" alt="UniDonate">
+    </a>
+
+    <nav aria-label="Principal">
+      <a href="Home.html"> Home </a>
+      <a href="#"> Explorar </a>
+      <a href="#"> Publicar </a>
+      <a href="#"> Chat </a>
+      <a href="#"> Ayuda </a>
+      <a href="#" class="Perfil"> Perfil </a>
+    </nav>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  </header>
+
+  <main>
+    <div class="Login" id="Login">
+      <h2>Login</h2>
+        <article>
+        <form action="formulario" method="post">
+            <label>Nombre:</label>
+            <input type="text" placeholder="Ingresa tu usuario">
+
+            <label>Correo institucional:</label>
+            <input type="email" placeholder="usuario@universidad.edu.pe">
+
+            <label>Contraseña:</label>
+            <input type="password" placeholder="****">
+
+            <a type="submit" class="btn-primary" href="Home.html">ENTRAR</a>
+
+            <p class="help-text">¿Olvidaste tu contraseña? Recupérala aquí</p>
+
+            <button type="button" class="btn-sec">RECUPERAR CONTRASEÑA</button>
+        </form>
+
+        <img class="Image" src="assets/images/Login_image.jpg" alt="Estudiantes en campus">
+        </article>
+
+    </div>
+  </main>
+
+  <footer>
+    <img src="assets/images/Logo.png" height="100" alt="UniDonate">
+    <span>
+      Plataforma de donaciones universitarias<br>
+      para una comunidad más sostenible y<br>
+      colaborativa.
+    </span>
+
+    <article>
+      <h4>Enlaces Rápidos</h4>
+      <a href="#titulo"> Inicio </a>
+      <a href="#ComoFunciona"> Como Funciona </a>
+      <a href="#Nosotros"> Nosotros </a>
+      <a href="#Contactanos"> Ayuda </a>
+    </article>
+
+    <article>
+      <h4>Legal</h4>
+      <a href="#" id="terms-link"> Terminos y Condiciones </a>
+      <a href="#" id="privacy-link"> Politica de Privacidad </a>
+
+    </article>
+
+    <article>
+      <h4>Contáctanos</h4>
+      <p>Email: contacto@unidonate.com</p>
+      <p>Teléfono: +51 000 000 000</p>
+    </article>
+
+    <hr>
+    <small>&copy; 2025 UniDonate. Todos los derechos reservados</small>
+        <div id="terms-overlay" class="overlay"></div>
+    <div id="terms-modal" class="modal">
+    <div class="modal-header">
+      <button id="modal-close-btn" class="modal-close-btn" aria-label="Cerrar">←</button>
+      <div class="modal-header-text">
+        <h2>Términos y Condiciones</h2>
+        <p>Última actualización: 30 de octubre de 2025</p>
+      </div>
+    </div>
+    <div class="modal-content">
+      <h4>1. Propósito del Aplicativo</h4>
+      <p>Esta aplicativo tiene como objetivo facilitar la donación e intercambio de materiales escolares y educativos entre estudiantes de la comunidad académica. Al registrarte y utilizar la plataforma, aceptas estos términos y condiciones en su totalidad.</p>
+      
+      <h4>2. Registro y Elegibilidad</h4>
+      <p>Para utilizar este servicio, debes ser estudiante activo de una institución educativa o tener autorización de un tutor legal si eres menor de edad. Al registrarte, garantizas que la información proporcionada es veraz y actualizada. Debes proporcionar un correo electrónico institucional válido y mantener la confidencialidad de tu cuenta.</p>
+      
+      <h4>3. Donaciones y Materiales</h4>
+      <p>Los usuarios pueden publicar materiales escolares para donación. Los materiales donados deben estar en condiciones adecuadas de uso, la descripción debe ser precisa y las fotografías deben representar fielmente el estado del material.</p>
+      
+      <h4>4. Responsabilidades del Usuario</h4>
+      <p>Como usuario del aplicativo, te comprometes a: usar la plataforma únicamente con fines educativos, tratar con respeto a otros, y no utilizar la plataforma para fines comerciales.</p>
+
+      <h4>5. Coordinación de Entregas</h4>
+      <p>La plataforma facilita el contacto, pero no se hace responsable del proceso de entrega. Los usuarios deben acordar lugares seguros y públicos, respetar los horarios y priorizar su seguridad personal.</p>
+
+      <h4>6. Contenido Prohibido</h4>
+      <p>Está estrictamente prohibido publicar o solicitar materiales pirateados, contenido inapropiado, información personal sensible de terceros, o publicaciones con fines de lucro o comerciales.</p>
+      
+      <h4>7. Descargo de Responsabilidad</h4>
+      <p>El aplicativo actúa como intermediario. No somos responsables de la calidad de los materiales, el cumplimiento de acuerdos, pérdidas o daños durante la entrega, ni disputas entre usuarios.</p>
+
+      <h4>8. Privacidad y Protección de Datos</h4>
+      <p>Nos comprometemos a proteger tu información personal según nuestra Política de Privacidad. Nunca compartimos información personal con terceros sin tu consentimiento.</p>
+
+      <h4>9. Modificaciones y Suspensión</h4>
+      <p>Nos reservamos el derecho de modificar estos términos en cualquier momento. También podemos suspender o eliminar cuentas que violen estos términos.</p>
+
+      <h4>10. Contacto</h4>
+      <p>Si tienes alguna pregunta sobre estos Términos y Condiciones, por favor contáctanos a través de nuestro correo electrónico de soporte.</p>
+    </div>
+  </div>
+
+  </div> <div id="privacy-overlay" class="overlay"></div>
+  <div id="privacy-modal" class="modal">
+    <div class="modal-header">
+      <button id="privacy-modal-close-btn" class="modal-close-btn" aria-label="Cerrar">←</button>
+      <div class="modal-header-text">
+        <h2>Política de Privacidad</h2>
+        <p>Última actualización: 30 de octubre de 2025</p>
+      </div>
+    </div>
+    <div class="modal-content">
+      <h4>1. Introducción</h4>
+      <p>En UniDonate, tu privacidad es nuestra prioridad. Esta política detalla qué información recopilamos, cómo la usamos y cómo la protegemos para garantizar un entorno seguro y confiable para toda la comunidad estudiantil.</p>
+      
+      <h4>2. Información que Recopilamos</h4>
+      <p><strong>Información de Registro:</strong> Al crear una cuenta, solicitamos tu nombre, correo electrónico institucional y sede para verificar tu identidad como estudiante activo.</p>
+      <p><strong>Contenido de Publicaciones:</strong> Recopilamos la información que proporcionas sobre los artículos que donas, incluyendo título, descripción y fotografías.</p>
+      <p><strong>Datos de Comunicación:</strong> Para facilitar la coordinación, almacenamos de forma segura los mensajes que intercambias con otros usuarios a través de nuestro chat interno.</p>
+
+      <h4>3. Cómo Usamos tu Información</h4>
+      <p>Utilizamos tu información exclusivamente para:</p>
+      <ul>
+        <li>Verificar y administrar tu cuenta de usuario.</li>
+        <li>Permitir que otros estudiantes vean tus publicaciones y se pongan en contacto contigo.</li>
+        <li>Facilitar la comunicación segura a través del chat interno.</li>
+        <li>Mejorar la seguridad y el funcionamiento de nuestra plataforma.</li>
+      </ul>
+
+      <h4>4. Con Quién Compartimos tu Información</h4>
+      <p><strong>No vendemos ni alquilamos tus datos personales a terceros.</strong> La información de tus publicaciones (sin incluir tu correo completo) es visible para otros usuarios registrados de la plataforma. La comunicación directa solo es posible a través del chat una vez que se inicia una solicitud.</p>
+
+      <h4>5. Seguridad de tus Datos</h4>
+      <p>Implementamos medidas de seguridad técnicas y organizativas para proteger tu información contra el acceso no autorizado, la alteración o la destrucción. El acceso está restringido a usuarios verificados con correo institucional.</p>
+
+      <h4>6. Tus Derechos</h4>
+      <p>Tienes derecho a acceder, corregir o eliminar tu información personal en cualquier momento desde la configuración de tu perfil. También puedes eliminar tus publicaciones activas cuando lo desees.</p>
+
+      <h4>7. Contacto</h4>
+      <p>Si tienes alguna pregunta sobre esta Política de Privacidad, no dudes en contactarnos a través de nuestro correo electrónico de soporte.</p>
+    </div>
+  </div>
+  </footer>
+
+  <script src="assets/scripts/Login.js" defer></script>
+</body>
+</html>
