@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Explorar - UniDonate</title>
+  <link rel="stylesheet" href="assets/styles/Explorar.css" />
+<script type="text/javascript" src="https://me.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=iVj-zgAyK35DhY1UByPdIUoc0zsN38-Mueejwgvw1YvP-BoJpw9OZ7JmYogYNy0Ry20ougK62Zbgoc11Ju0YtfecRTXvfueQYIPZ0ku9x8MOTeVUsg9VhRYnamF-fCCNSNeBUzJj9j8NjKvq_sfzxjJQfx2buJaJ4uKOG-vFKy1DAmHP4vc4zpHQBMXBpcadsH1pb_GXUOdrwZ4hK6APOmCVLIEa8U5zuiDAk7_twWl8tm7B1OyyIf-H2eCwycvSq_URhrzSZeCMln_p4z58hA" charset="UTF-8"></script></head>
+<body>
+  <header>
+    <a href="Home.html" aria-label="Volver al Home">
+      <img class="Logo" src="assets/images/Logo.png" alt="UniDonate">
+    </a>
+    <nav aria-label="Principal">
+      <a href="Home.html">Home</a>
+      <a href="Explorar.html" class="active">Explorar</a>
+      <a href="Publicar.html">Publicar</a>
+      <a href="Conversaciones.html">Chat</a>
+      <a href="Ayuda.html">Ayuda</a>
+      <a href="Profile.html" id="perfilBtn" class="Perfil">Perfil</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  </header>
+
+  <div id="perfilPopover" class="profile-popover" role="menu" aria-hidden="true">
+    <div class="profile-header"><div class="avatar" aria-hidden="true">👤</div></div>
+    <ul class="profile-list">
+      <li><a href="Profile.html" role="menuitem" tabindex="-1">Editar Perfil</a></li>
+      <li><a href="Historial.html" role="menuitem" tabindex="-1">Ver Historial</a></li>
+      <li><a href="Notificaciones.html" role="menuitem" tabindex="-1">Notificaciones</a></li>
+    </ul>
+    <a href="index.html" type="button" class="btn-logout">Cerrar sesión</a>
+  </div>
+
+  <main>
+    <section class="explore-header">
+      <h1>Explorar</h1>
+      <div class="filters">
+        <div class="search-bar">
+          <input type="text" placeholder="Buscar">
+          <button aria-label="Buscar"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg></button>
+        </div>
+        <div class="dropdown-container">
+          <button class="dropdown-toggle" data-target="categoria-menu">
+            <span class="dropdown-value">Categoría</span>
+            <svg class="dropdown-arrow" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"></path></svg>
+          </button>
+          <ul id="categoria-menu" class="dropdown-menu">
+            <li><a href="#">Libros</a></li>
+            <li><a href="#">Apuntes</a></li>
+            <li><a href="#">Tecnología</a></li>
+            <li><a href="#">Accesorios</a></li>
+            <li><a href="#">Ropa</a></li>
+          </ul>
+        </div>
+        <div class="dropdown-container">
+          <button class="dropdown-toggle" data-target="sede-menu">
+            <span class="dropdown-value">Sede</span>
+            <svg class="dropdown-arrow" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"></path></svg>
+          </button>
+          <ul id="sede-menu" class="dropdown-menu">
+            <li><a href="#">Monterrico</a></li>
+            <li><a href="#">San Isidro</a></li>
+            <li><a href="#">Villa</a></li>
+            <li><a href="#">San Miguel</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-grid">
+      <article class="product-card">
+        <img src="assets/images/Libro_Image.jpg" alt="Libro de Cálculo">
+        <h3>Libro Cálculo I</h3>
+        <div class="card-buttons">
+          <a href="Producto1.html" class="btn-card btn-view">Ver</a>
+          <a href="Conversaciones.html" class="btn-card btn-request">Solicitar</a>
+        </div>
+      </article>
+      <article class="product-card">
+        <img src="assets/images/Calculadora_Image.png" alt="Calculadora">
+        <h3>Calculadora</h3>
+        <div class="card-buttons">
+          <a href="Producto6.html" class="btn-card btn-view">Ver</a>
+          <a href="Conversaciones.html" class="btn-card btn-request">Solicitar</a>
+        </div>
+      </article>
+      <article class="product-card">
+        <img src="assets/images/Mochila_Image.png" alt="Mochila">
+        <h3>Mochila</h3>
+        <div class="card-buttons">
+          <a href="Producto5.html" class="btn-card btn-view">Ver</a>
+          <a href="Conversaciones.html" class="btn-card btn-request">Solicitar</a>
+        </div>
+      </article>
+      <article class="product-card">
+        <img src="assets/images/Apuntes_Image.jpg" alt="Hojas en blanco">
+        <h3>Apuntes</h3>
+        <div class="card-buttons">
+          <a href="Producto2.html" class="btn-card btn-view">Ver</a>
+          <a href="Conversaciones.html" class="btn-card btn-request">Solicitar</a>
+        </div>
+      </article>
+      <article class="product-card">
+        <img src="assets/images/Cartuchera_Image.png" alt="Cartuchera">
+        <h3>Cartuchera</h3>
+        <div class="card-buttons">
+          <a href="Producto4.html" class="btn-card btn-view">Ver</a>
+          <a href="Conversaciones.html" class="btn-card btn-request">Solicitar</a>
+        </div>
+      </article>
+      <article class="product-card">
+        <img src="assets/images/Cuaderno_Image.png" alt="Cuaderno">
+        <h3>Cuaderno</h3>
+        <div class="card-buttons">
+          <a href="Producto3.html" class="btn-card btn-view">Ver</a>
+          <a href="Conversaciones.html" class="btn-card btn-request">Solicitar</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <img src="assets/images/Logo.png" height="100" alt="UniDonate">
+    <span>
+      Plataforma de donaciones universitarias<br>
+      para una comunidad más sostenible y<br>
+      colaborativa.
+    </span>
+    <article>
+      <h4>Enlaces Rápidos</h4>
+      <a href="#">Inicio</a>
+      <a href="#">Cómo Funciona</a>
+      <a href="#">Nosotros</a>
+      <a href="#">Ayuda</a>
+    </article>
+    <article>
+      <h4>Legal</h4>
+      <a href="#" id="terms-link"> Terminos y Condiciones </a>
+      <a href="#" id="privacy-link"> Politica de Privacidad </a>
+
+    </article>
+    <article>
+      <h4>Contáctanos</h4>
+      <p>Email: contacto@unidonate.com</p>
+      <p>Teléfono: +51 000 000 000</p>
+    </article>
+    <hr>
+    <small>&copy; 2025 UniDonate. Todos los derechos reservados</small>
+        <div id="terms-overlay" class="overlay"></div>
+    <div id="terms-modal" class="modal">
+    <div class="modal-header">
+      <button id="modal-close-btn" class="modal-close-btn" aria-label="Cerrar">←</button>
+      <div class="modal-header-text">
+        <h2>Términos y Condiciones</h2>
+        <p>Última actualización: 30 de octubre de 2025</p>
+      </div>
+    </div>
+    <div class="modal-content">
+      <h4>1. Propósito del Aplicativo</h4>
+      <p>Esta aplicativo tiene como objetivo facilitar la donación e intercambio de materiales escolares y educativos entre estudiantes de la comunidad académica. Al registrarte y utilizar la plataforma, aceptas estos términos y condiciones en su totalidad.</p>
+      
+      <h4>2. Registro y Elegibilidad</h4>
+      <p>Para utilizar este servicio, debes ser estudiante activo de una institución educativa o tener autorización de un tutor legal si eres menor de edad. Al registrarte, garantizas que la información proporcionada es veraz y actualizada. Debes proporcionar un correo electrónico institucional válido y mantener la confidencialidad de tu cuenta.</p>
+      
+      <h4>3. Donaciones y Materiales</h4>
+      <p>Los usuarios pueden publicar materiales escolares para donación. Los materiales donados deben estar en condiciones adecuadas de uso, la descripción debe ser precisa y las fotografías deben representar fielmente el estado del material.</p>
+      
+      <h4>4. Responsabilidades del Usuario</h4>
+      <p>Como usuario del aplicativo, te comprometes a: usar la plataforma únicamente con fines educativos, tratar con respeto a otros, y no utilizar la plataforma para fines comerciales.</p>
+
+      <h4>5. Coordinación de Entregas</h4>
+      <p>La plataforma facilita el contacto, pero no se hace responsable del proceso de entrega. Los usuarios deben acordar lugares seguros y públicos, respetar los horarios y priorizar su seguridad personal.</p>
+
+      <h4>6. Contenido Prohibido</h4>
+      <p>Está estrictamente prohibido publicar o solicitar materiales pirateados, contenido inapropiado, información personal sensible de terceros, o publicaciones con fines de lucro o comerciales.</p>
+      
+      <h4>7. Descargo de Responsabilidad</h4>
+      <p>El aplicativo actúa como intermediario. No somos responsables de la calidad de los materiales, el cumplimiento de acuerdos, pérdidas o daños durante la entrega, ni disputas entre usuarios.</p>
+
+      <h4>8. Privacidad y Protección de Datos</h4>
+      <p>Nos comprometemos a proteger tu información personal según nuestra Política de Privacidad. Nunca compartimos información personal con terceros sin tu consentimiento.</p>
+
+      <h4>9. Modificaciones y Suspensión</h4>
+      <p>Nos reservamos el derecho de modificar estos términos en cualquier momento. También podemos suspender o eliminar cuentas que violen estos términos.</p>
+
+      <h4>10. Contacto</h4>
+      <p>Si tienes alguna pregunta sobre estos Términos y Condiciones, por favor contáctanos a través de nuestro correo electrónico de soporte.</p>
+    </div>
+  </div>
+
+  </div> <div id="privacy-overlay" class="overlay"></div>
+  <div id="privacy-modal" class="modal">
+    <div class="modal-header">
+      <button id="privacy-modal-close-btn" class="modal-close-btn" aria-label="Cerrar">←</button>
+      <div class="modal-header-text">
+        <h2>Política de Privacidad</h2>
+        <p>Última actualización: 30 de octubre de 2025</p>
+      </div>
+    </div>
+    <div class="modal-content">
+      <h4>1. Introducción</h4>
+      <p>En UniDonate, tu privacidad es nuestra prioridad. Esta política detalla qué información recopilamos, cómo la usamos y cómo la protegemos para garantizar un entorno seguro y confiable para toda la comunidad estudiantil.</p>
+      
+      <h4>2. Información que Recopilamos</h4>
+      <p><strong>Información de Registro:</strong> Al crear una cuenta, solicitamos tu nombre, correo electrónico institucional y sede para verificar tu identidad como estudiante activo.</p>
+      <p><strong>Contenido de Publicaciones:</strong> Recopilamos la información que proporcionas sobre los artículos que donas, incluyendo título, descripción y fotografías.</p>
+      <p><strong>Datos de Comunicación:</strong> Para facilitar la coordinación, almacenamos de forma segura los mensajes que intercambias con otros usuarios a través de nuestro chat interno.</p>
+
+      <h4>3. Cómo Usamos tu Información</h4>
+      <p>Utilizamos tu información exclusivamente para:</p>
+      <ul>
+        <li>Verificar y administrar tu cuenta de usuario.</li>
+        <li>Permitir que otros estudiantes vean tus publicaciones y se pongan en contacto contigo.</li>
+        <li>Facilitar la comunicación segura a través del chat interno.</li>
+        <li>Mejorar la seguridad y el funcionamiento de nuestra plataforma.</li>
+      </ul>
+
+      <h4>4. Con Quién Compartimos tu Información</h4>
+      <p><strong>No vendemos ni alquilamos tus datos personales a terceros.</strong> La información de tus publicaciones (sin incluir tu correo completo) es visible para otros usuarios registrados de la plataforma. La comunicación directa solo es posible a través del chat una vez que se inicia una solicitud.</p>
+
+      <h4>5. Seguridad de tus Datos</h4>
+      <p>Implementamos medidas de seguridad técnicas y organizativas para proteger tu información contra el acceso no autorizado, la alteración o la destrucción. El acceso está restringido a usuarios verificados con correo institucional.</p>
+
+      <h4>6. Tus Derechos</h4>
+      <p>Tienes derecho a acceder, corregir o eliminar tu información personal en cualquier momento desde la configuración de tu perfil. También puedes eliminar tus publicaciones activas cuando lo desees.</p>
+
+      <h4>7. Contacto</h4>
+      <p>Si tienes alguna pregunta sobre esta Política de Privacidad, no dudes en contactarnos a través de nuestro correo electrónico de soporte.</p>
+    </div>
+  </div>
+  </footer>
+
+  <script src="assets/scripts/Explorar.js" defer></script>
+</body>
+</html>
