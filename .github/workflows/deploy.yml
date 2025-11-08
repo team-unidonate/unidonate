@@ -15,10 +15,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      # Si tu sitio es estático puro, no necesitas build.
-      # Si tienes build (Vite/React/etc.), compila aquí y deja el resultado en 'public'.
-
+        
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
