@@ -222,7 +222,7 @@ footer small{ grid-area:copy; color:#8F8C8C; text-align:center }
     z-index: 9;
   }
 
-  /* ✨ Cuando el nav tiene la clase 'open', se muestra */
+  /* Cuando el nav tiene la clase 'open', se muestra */
   header nav.open {
     display: flex;
   }
