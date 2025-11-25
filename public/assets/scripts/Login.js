@@ -87,3 +87,26 @@ if (privacyLink && privacyModal && privacyOverlay && closePrivacyBtn) {
   // Cerrar modal al hacer clic en el fondo oscuro
   privacyOverlay.addEventListener('click', closePrivacyModal);
 }
+
+/* ====== LÓGICA DE INICIO DE SESIÓN (LOGIN) ====== */
+const btnLogin = document.getElementById('btn-login');
+  const inputCorreo = document.getElementById('email-input');
+  const inputPass = document.getElementById('password-input');
+
+  if(btnLogin) {
+    btnLogin.addEventListener('click', (e) => {
+      e.preventDefault(); // Evita que el formulario se envíe solo
+
+      // Validación: Que los campos no estén vacíos
+      if (!inputCorreo.value.trim() || !inputPass.value.trim()) {
+        alert("⚠️ Por favor, ingresa tu correo y contraseña para continuar.");
+        return; 
+      }
+
+      // Mensaje de Bienvenida (Simulación de éxito)
+      alert(`¡Bienvenido a Uni-Donate! \n\nHas iniciado sesión correctamente como: ${inputCorreo.value}`);
+
+      // Redirección a la carpeta assets (Ruta relativa)
+      window.location.href = "Home.html"; 
+    });
+  }

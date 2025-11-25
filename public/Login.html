@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+  <title>Iniciar Sesion</title>
   <link rel="stylesheet" href="assets/styles/Login.css">
 </head>
 <body>
@@ -12,32 +12,22 @@
       <img class="Logo" src="assets/images/Logo.png" alt="UniDonate">
     </a>
 
-    <nav aria-label="Principal">
-      <a href="Home.html"> Home </a>
-      <a href="#"> Explorar </a>
-      <a href="#"> Publicar </a>
-      <a href="#"> Chat </a>
-      <a href="#"> Ayuda </a>
-      <a href="#" class="Perfil"> Perfil </a>
-    </nav>
-    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+
   </header>
 
   <main>
     <div class="Login" id="Login">
-      <h2>Login</h2>
+      <h2>Iniciar Sesion</h2>
         <article>
         <form action="formulario" method="post">
-            <label>Nombre:</label>
-            <input type="text" placeholder="Ingresa tu usuario">
 
             <label>Correo institucional:</label>
-            <input type="email" placeholder="usuario@universidad.edu.pe">
+            <input type="email" id="email-input" placeholder="usuario@universidad.edu.pe">
 
             <label>Contraseña:</label>
-            <input type="password" placeholder="****">
+            <input type="password" id="password-input" placeholder="****">
 
-            <a type="submit" class="btn-primary" href="Home.html">ENTRAR</a>
+            <button type="button" id="btn-login" class="btn-primary">ENTRAR</button>
 
             <p class="help-text">¿Olvidaste tu contraseña? Recupérala aquí</p>
 
@@ -58,13 +48,6 @@
       colaborativa.
     </span>
 
-    <article>
-      <h4>Enlaces Rápidos</h4>
-      <a href="#titulo"> Inicio </a>
-      <a href="#ComoFunciona"> Como Funciona </a>
-      <a href="#Nosotros"> Nosotros </a>
-      <a href="#Contactanos"> Ayuda </a>
-    </article>
 
     <article>
       <h4>Legal</h4>
