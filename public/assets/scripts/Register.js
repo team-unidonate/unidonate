@@ -117,3 +117,49 @@ if (privacyLink && privacyModal && privacyOverlay && closePrivacyBtn) {
   // Cerrar modal al hacer clic en el fondo oscuro
   privacyOverlay.addEventListener('click', closePrivacyModal);
 }
+
+/* ===========================================================
+     LOGICA DE REGISTRO Y VALIDACIÓN 
+     =========================================================== */
+  const btnRegister = document.getElementById('btn-register');
+  const inputName = document.getElementById('name-input');
+  const inputEmail = document.getElementById('email-input');
+  const inputPass = document.getElementById('password-input');
+  const sedeValue = document.getElementById('sede-value');
+
+  if (btnRegister) {
+    btnRegister.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      const nombre = inputName.value.trim();
+      const correo = inputEmail.value.trim();
+      const pass = inputPass.value.trim();
+      const sede = sedeValue.textContent.trim();
+
+      // 1. Validación de campos vacíos
+      if (!nombre || !correo || !pass) {
+        alert("⚠️ Por favor, completa todos los campos.");
+        return;
+      }
+
+      // 2. Validación de Correo Institucional (US08)
+      // Verificamos que termine en @universidad.edu.pe 
+      // Puedes ajustar el dominio según lo que necesites probar
+      if (!correo.endsWith('@universidad.edu.pe') && !correo.endsWith('@upc.edu.pe')) {
+        alert("⛔ Error: Debes usar un correo institucional válido (ej: @universidad.edu.pe).");
+        return;
+      }
+
+      // 3. Validación de Contraseña (mínimo 6 caracteres por seguridad básica)
+      if (pass.length < 4) {
+        alert("⚠️ La contraseña es muy corta.");
+        return;
+      }
+
+      // 4. Éxito y Redirección 
+      alert(`¡Cuenta creada con éxito, ${nombre}!\n\nSede registrada: ${sede}\nAhora puedes iniciar sesión.`);
+      
+      // Redirige al Login para que el usuario entre con su nueva cuenta
+      window.location.href = "Login.html"; 
+    });
+  }

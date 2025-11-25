@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register</title>
+  <title>Crear Cuenta</title>
   <link rel="stylesheet" href="assets/styles/Register.css">
 </head>
 <body>
@@ -11,45 +11,37 @@
     <a href="index.html" aria-label="Volver a la landing">
       <img class="Logo" src="assets/images/Logo.png" alt="UniDonate">
     </a>
-    <nav aria-label="Principal">
-      <a href="Home.html">Home</a>
-      <a href="Explorar.html">Explorar</a>
-      <a href="Publicar.html">Publicar</a>
-      <a href="Conversaciones.html" >Chat</a>
-      <a href="#">Ayuda</a>
-      <a href="Profile.html" id="perfilBtn" class="Perfil">Perfil</a>
-    </nav>
-    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+
   </header>
 
   <main>
     <div class="Regiser" id="Register">
-      <h2>Register</h2>
+      <h2>Crear Cuenta</h2>
       <article>
-        <form action="formulario" method="post">
-          <label>Nombre:</label>
-          <input type="text" placeholder="Ingresa tu usuario">
+        <form action="#" method="post">
+            <label>Nombre:</label>
+            <input type="text" id="name-input" placeholder="Ingresa tu usuario">
 
-          <label>Correo institucional:</label>
-          <input type="email" placeholder="usuario@universidad.edu.pe">
+            <label>Correo institucional:</label>
+            <input type="email" id="email-input" placeholder="usuario@universidad.edu.pe">
 
-          <label>Contraseña:</label>
-          <input type="password" placeholder="****">
+            <label>Contraseña:</label>
+            <input type="password" id="password-input" placeholder="****">
 
-          <div class="dropdown">
-            <label>Sede:</label>
-            <button class="btn-drop" aria-haspopup="true" aria-expanded="false">
-              <span class="drop-value">San Miguel</span> ▾
-            </button>
-            <ul class="dropdown-menu" role="menu">
-              <li><a role="menuitem" data-value="San Isidro">San Isidro</a></li>
-              <li><a role="menuitem" data-value="San Miguel">San Miguel</a></li>
-              <li><a role="menuitem" data-value="Monterrico">Monterrico</a></li>
-              <li><a role="menuitem" data-value="Villa">Villa</a></li>
-            </ul>
-          </div>
+            <div class="dropdown">
+                <label>Sede:</label>
+                <button class="btn-drop" aria-haspopup="true" aria-expanded="false">
+                    <span class="drop-value" id="sede-value">San Miguel</span> ▾
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a role="menuitem" data-value="San Isidro">San Isidro</a></li>
+                    <li><a role="menuitem" data-value="San Miguel">San Miguel</a></li>
+                    <li><a role="menuitem" data-value="Monterrico">Monterrico</a></li>
+                    <li><a role="menuitem" data-value="Villa">Villa</a></li>
+                </ul>
+            </div>
 
-          <button type="submit" class="btn-primary">CREAR</button>
+            <button type="button" id="btn-register" class="btn-primary">CREAR</button>
         </form>
 
         <img class="Image" src="assets/images/Register_image.jpg" alt="Estudiantes en campus">
@@ -65,13 +57,7 @@
       colaborativa.
     </span>
 
-    <article>
-      <h4>Enlaces Rápidos</h4>
-      <a href="#titulo"> Inicio </a>
-      <a href="#ComoFunciona"> Como Funciona </a>
-      <a href="#Nosotros"> Nosotros </a>
-      <a href="#Contactanos"> Ayuda </a>
-    </article>
+
 
     <article>
       <h4>Legal</h4>
