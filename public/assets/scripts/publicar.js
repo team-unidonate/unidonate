@@ -150,3 +150,42 @@ if (privacyLink && privacyModal && privacyOverlay && closePrivacyBtn) {
   // Cerrar modal al hacer clic en el fondo oscuro
   privacyOverlay.addEventListener('click', closePrivacyModal);
 }
+
+/* ===========================================================
+     LÓGICA DE PUBLICACIÓN 
+     =========================================================== */
+  const btnPublishAction = document.getElementById('btn-publish-action');
+  const inputTitulo = document.getElementById('titulo');
+  const inputDescripcion = document.getElementById('descripcion');
+  
+  // Elementos para leer el valor de los dropdowns
+  // (Asumiendo que el texto del botón cambia al seleccionar una opción, 
+  // tal como lo programaste en la lógica de dropdowns anterior)
+  const categoriaBtn = document.getElementById('categoria');
+  const sedeBtn = document.getElementById('sede');
+
+  if (btnPublishAction) {
+    btnPublishAction.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      // 1. Obtener valores
+      const titulo = inputTitulo.value.trim();
+      const descripcion = inputDescripcion.value.trim();
+      // Leemos el texto dentro del span .dropdown-value
+      const categoria = categoriaBtn.querySelector('.dropdown-value').textContent.trim();
+      const sede = sedeBtn.querySelector('.dropdown-value').textContent.trim();
+
+      // 2. Validación (US19)
+      if (!titulo || !descripcion) {
+        alert("⚠️ Por favor, completa el título y la descripción del objeto.");
+        return;
+      }
+
+      // 3. Confirmación y Redirección (US47)
+      // Aquí simulamos que se envía al servidor
+      alert(`✅ ¡Publicación exitosa!\n\nObjeto: ${titulo}\nCategoría: ${categoria}\nSede: ${sede}\n\nTu donación ahora es visible para la comunidad.`);
+      
+      // Redirigir al Home (o a "Mis Publicaciones" si tuvieras esa página lista)
+      window.location.href = "Explorar.html";
+    });
+  }
