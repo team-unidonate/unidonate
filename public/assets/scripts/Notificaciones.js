@@ -111,3 +111,53 @@ document.addEventListener('DOMContentLoaded', () => {
     privacyOverlay.addEventListener('click', closePrivacyModal);
   }
 });
+
+
+/* ===== Lógica de Acciones de Notificaciones (US37 y US33) ===== */
+  const notificationListContainer = document.querySelector('.notification-list');
+
+  if(notificationListContainer) {
+    notificationListContainer.addEventListener('click', (e) => {
+      
+      // 1. Eliminar notificación individual
+      if (e.target.closest('.btn-delete-notif')) {
+        const item = e.target.closest('.notification-item');
+        // Animación visual antes de borrar
+        item.style.transition = "all 0.3s ease";
+        item.style.opacity = "0";
+        item.style.transform = "translateX(20px)";
+        
+        setTimeout(() => {
+          item.remove();
+          // Si no quedan notificaciones, podrías mostrar un mensaje de "Vacío"
+        }, 300);
+      }
+    });
+  }
+
+  // 2. Marcar TODAS como leídas
+  const btnMarkAll = document.getElementById('mark-all-read');
+  if (btnMarkAll) {
+    btnMarkAll.addEventListener('click', () => {
+      document.querySelectorAll('.notification-item').forEach(item => {
+        item.classList.add('is-read');
+        const btn = item.querySelector('.btn-mark-read');
+        if(btn) btn.textContent = 'Leída';
+      });
+      alert("✅ Todas las notificaciones marcadas como leídas.");
+    });
+  }
+
+
+  /* ===== Lógica de Preferencias (US40) ===== */
+  const toggle = document.getElementById('notif-toggle');
+  
+  if (toggle) {
+    toggle.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        alert("🔔 Has ACTIVADO las notificaciones.");
+      } else {
+        alert("🔕 Has DESACTIVADO las notificaciones.\nNo recibirás nuevas alertas.");
+      }
+    });
+  }
