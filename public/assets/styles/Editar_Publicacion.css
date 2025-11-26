@@ -98,9 +98,9 @@ header nav .Perfil.active, .Perfil:hover{ background: #1aad6b;}
 
 /* ===== Estilos para Botón de Eliminar (US23) ===== */
 :root {
-  --danger-bg: #fee2e2;
-  --danger-text: #ef4444;
-  --danger-hover: #fca5a5;
+  --danger-bg: #FECDD3;
+  --danger-text: #F43F5E;
+  --danger-hover: #FECDD3;
 }
 
 .btn--danger {
@@ -111,10 +111,6 @@ header nav .Perfil.active, .Perfil:hover{ background: #1aad6b;}
   border: 1px solid transparent;
 }
 
-.btn--danger:hover {
-  background-color: var(--danger-hover);
-  color: #fff;
-}
 
 /* Ajuste para que el botón "Cambiar Imagen" se vea bien */
 .btn--full {
