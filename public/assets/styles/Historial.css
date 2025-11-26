@@ -212,6 +212,42 @@ footer small{ grid-area:copy; color:#8F8C8C; text-align:center }
 .modal-content ul { padding-left: 20px; margin: 0 0 16px; color: #000; }
 
 
+/* ===== Estilos de Estado (US11) ===== */
+.history-item__status {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Alineado a la derecha */
+}
+
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-entregado {
+  background-color: #dcfce7; /* Verde claro */
+  color: #166534; /* Verde oscuro */
+  border: 1px solid #bbf7d0;
+}
+
+.status-pendiente {
+  background-color: #fef3c7; /* Amarillo claro */
+  color: #92400e; /* Amarillo oscuro */
+  border: 1px solid #fde68a;
+}
+
+/* Ajuste responsive */
+@media (max-width: 900px) {
+  .history-item__status {
+    justify-content: flex-start; /* Alineado a la izquierda en móvil */
+    margin-top: 8px;
+  }
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 900px) {
   .history-item {
