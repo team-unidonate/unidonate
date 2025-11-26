@@ -118,20 +118,56 @@ header nav .Perfil:hover{ background:var(--primary-strong) }
 .hero h1{ margin:0; font-size:44px; font-weight:800 }
 
 /* ===== Videos ===== */
-.videos-section{
-  display:grid; grid-template-columns: 1fr 1fr; gap:28px;
-  padding:18px; background:linear-gradient(180deg, #dff7eb 0%, #eaf6ff 100%);
-  border-bottom:1px solid var(--line);
+
+.videos-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 18px;
+  background: linear-gradient(180deg, #dff7eb 0%, #eaf6ff 100%);
+  border-bottom: 1px solid var(--line);
 }
-.video-card h3{ text-align:center; margin:0 0 10px; font-size:16px; font-weight:600; color:#1b1f23; }
-.video-placeholder{
-  height:190px; border-radius:14px; background:#0b0b0b;
-  display:grid; place-items:center; position:relative; overflow:hidden; box-shadow:var(--shadow);
+
+.video-card {
+  background: #fff;
+  padding: 12px;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
 }
-.video-placeholder svg{ width:54px; height:54px; fill:#fff; }
-.video-placeholder::after{
-  content:""; position:absolute; left:0; right:0; bottom:18%;
-  height:3px; background:#1c1c1c; border-radius:999px;
+
+.video-card h3 {
+  text-align: center;
+  margin: 0 0 12px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* Proporción 16:9 exacta */
+  height: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  .videos-section {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ===== Publicaciones ===== */
