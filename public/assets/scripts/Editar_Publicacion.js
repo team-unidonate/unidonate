@@ -1,25 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
-  /* ===== Lógica del Header (Menú hamburguesa y Popover de Perfil) ===== */
+  
+  /* ===========================================================
+     1. LÓGICA DEL HEADER (Menú hamburguesa y Popover)
+     =========================================================== */
   const header = document.querySelector('header');
   const nav = header?.querySelector('nav');
   const toggleBtn = header?.querySelector('.menu-toggle');
   const perfilBtn = document.getElementById('perfilBtn');
   const popover = document.getElementById('perfilPopover');
 
-  // 1. Lógica para el Menú Hamburguesa
+  // Menú Hamburguesa (Móvil)
   if (toggleBtn && nav) {
     toggleBtn.addEventListener('click', (e) => {
-      e.stopPropagation(); // Evita que el clic se propague
+      e.stopPropagation();
       nav.classList.toggle('open');
       toggleBtn.setAttribute('aria-expanded', nav.classList.contains('open'));
     });
   }
 
-  // 2. Lógica para el Pop-up de Perfil
+  // Popover de Perfil
   if (perfilBtn && popover) {
     const openPopover = () => {
       const rect = perfilBtn.getBoundingClientRect();
-      popover.style.top = `${rect.bottom + 8}px`; // Ajusta la posición
+      popover.style.top = `${rect.bottom + 8}px`;
       popover.classList.add('open');
       perfilBtn.setAttribute('aria-expanded', 'true');
     };
@@ -30,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     perfilBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      e.stopPropagation(); // Evita que el clic se propague
+      e.stopPropagation();
       if (nav && nav.classList.contains('open')) {
         nav.classList.remove('open');
         toggleBtn?.setAttribute('aria-expanded', 'false');
@@ -39,71 +42,98 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== Lógica de la Página de Edición ===== */
-  const imageUpload = document.getElementById('image-upload');
-  const editPreviewImg = document.getElementById('edit-preview-img');
-
-  if (imageUpload && editPreviewImg) {
-    imageUpload.addEventListener('change', () => {
-      const file = imageUpload.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          editPreviewImg.src = event.target.result;
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-  }
-
-  const editForm = document.getElementById('edit-form');
-  if (editForm) {
-    editForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Cambios guardados (simulación)');
-    });
-  }
-
-  /* ===== Lógica para cerrar menús al hacer clic fuera (UNIFICADA) ===== */
+  // Cerrar menús al hacer clic fuera
   document.addEventListener('click', (e) => {
-    // Cierra el menú de hamburguesa
     if (nav && nav.classList.contains('open') && !header.contains(e.target)) {
       nav.classList.remove('open');
       toggleBtn?.setAttribute('aria-expanded', 'false');
     }
-    // Cierra el pop-up de perfil
     if (popover && popover.classList.contains('open') && !popover.contains(e.target) && e.target !== perfilBtn) {
       popover.classList.remove('open');
       perfilBtn?.setAttribute('aria-expanded', 'false');
     }
   });
 
-  /* ===== Lógica de Modals del Footer ===== */
-  // Modal de Términos y Condiciones
-  const termsLink = document.getElementById('terms-link');
-  const termsModal = document.getElementById('terms-modal');
-  const termsOverlay = document.getElementById('terms-overlay');
-  const closeModalBtn = document.getElementById('modal-close-btn');
+  /* ===========================================================
+     2. LÓGICA DE EDICIÓN DE PUBLICACIÓN (US26)
+     =========================================================== */
+  
+  // A) Vista previa de la imagen al seleccionarla
+  const imageInput = document.getElementById('image-upload');
+  const previewImg = document.getElementById('edit-preview-img');
 
-  if (termsLink && termsModal && termsOverlay && closeModalBtn) {
-    const openModal = () => { termsModal.classList.add('visible'); termsOverlay.classList.add('visible'); };
-    const closeModal = () => { termsModal.classList.remove('visible'); termsOverlay.classList.remove('visible'); };
-    termsLink.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
-    closeModalBtn.addEventListener('click', closeModal);
-    termsOverlay.addEventListener('click', closeModal);
+  if (imageInput && previewImg) {
+    imageInput.addEventListener('change', () => {
+      const file = imageInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          previewImg.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
   }
 
-  // Modal de Política de Privacidad
-  const privacyLink = document.getElementById('privacy-link');
-  const privacyModal = document.getElementById('privacy-modal');
-  const privacyOverlay = document.getElementById('privacy-overlay');
-  const closePrivacyBtn = document.getElementById('privacy-modal-close-btn');
+  // B) Guardar Cambios
+  const editForm = document.getElementById('edit-form');
+  const editNombre = document.getElementById('edit-nombre');
 
-  if (privacyLink && privacyModal && privacyOverlay && closePrivacyBtn) {
-    const openPrivacyModal = () => { privacyModal.classList.add('visible'); privacyOverlay.classList.add('visible'); };
-    const closePrivacyModal = () => { privacyModal.classList.remove('visible'); privacyOverlay.classList.remove('visible'); };
-    privacyLink.addEventListener('click', (e) => { e.preventDefault(); openPrivacyModal(); });
-    closePrivacyBtn.addEventListener('click', closePrivacyModal);
-    privacyOverlay.addEventListener('click', closePrivacyModal);
+  if (editForm) {
+    editForm.addEventListener('submit', (e) => {
+      e.preventDefault(); // Evita que la página se recargue
+
+      // Validación simple: Que al menos tenga nombre
+      if (editNombre && editNombre.value.trim() === "") {
+        alert("⚠️ Por favor, ingresa al menos el nombre del producto.");
+        return;
+      }
+
+      // Simulación de éxito
+      alert("✅ ¡Publicación actualizada correctamente!");
+      
+      // Redirección al perfil para ver los cambios
+      window.location.href = "Profile.html";
+    });
   }
+
+  /* ===========================================================
+     3. LÓGICA DE ELIMINACIÓN (US23) - ¡NUEVO!
+     =========================================================== */
+  const btnDelete = document.getElementById('btn-delete-pub');
+
+  if (btnDelete) {
+    btnDelete.addEventListener('click', () => {
+      // Confirmación de seguridad
+      const confirmacion = confirm("⚠️ ¿Estás seguro de que deseas ELIMINAR esta publicación?\n\nEsta acción no se puede deshacer.");
+      
+      if (confirmacion) {
+        alert("🗑️ Publicación eliminada exitosamente.");
+        // Redirección al perfil donde ya no debería aparecer el objeto
+        window.location.href = "Profile.html";
+      }
+    });
+  }
+
+  /* ===========================================================
+     4. MODALES DEL FOOTER (Legal)
+     =========================================================== */
+  const setupModal = (triggerId, modalId, overlayId, closeBtnId) => {
+    const trigger = document.getElementById(triggerId);
+    const modal = document.getElementById(modalId);
+    const overlay = document.getElementById(overlayId);
+    const closeBtn = document.getElementById(closeBtnId);
+
+    if (trigger && modal && overlay && closeBtn) {
+      const open = (e) => { e.preventDefault(); modal.classList.add('visible'); overlay.classList.add('visible'); };
+      const close = () => { modal.classList.remove('visible'); overlay.classList.remove('visible'); };
+      trigger.addEventListener('click', open);
+      closeBtn.addEventListener('click', close);
+      overlay.addEventListener('click', close);
+    }
+  };
+
+  setupModal('terms-link', 'terms-modal', 'terms-overlay', 'modal-close-btn');
+  setupModal('privacy-link', 'privacy-modal', 'privacy-overlay', 'privacy-modal-close-btn');
+
 });
