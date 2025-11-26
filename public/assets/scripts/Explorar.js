@@ -39,7 +39,52 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== NUEVO: Lógica para Dropdowns de Filtros ===== */
+ /* ===========================================================
+     LÓGICA DE BÚSQUEDA Y FILTROS (US05 y US15)
+     =========================================================== */
+  const searchInput = document.getElementById('search-input');
+  const cards = document.querySelectorAll('.product-card');
+  const clearBtn = document.getElementById('btn-clear-filters');
+  
+  // Etiquetas visuales de los botones dropdown
+  const catLabel = document.getElementById('cat-label');
+  const sedeLabel = document.getElementById('sede-label');
+
+  // Variables de estado
+  let currentSearch = "";
+  let currentCategory = "Categoría"; 
+  let currentSede = "Sede";          
+
+  // --- Función de Filtrado ---
+  const filterProducts = () => {
+    cards.forEach(card => {
+      const title = card.dataset.title.toLowerCase();
+      const category = card.dataset.category;
+      const sede = card.dataset.sede;
+
+      const matchesSearch = title.includes(currentSearch);
+      // Si es "Categoría" (default) muestra todo, si no, debe coincidir
+      const matchesCategory = currentCategory === "Categoría" || category === currentCategory;
+      const matchesSede = currentSede === "Sede" || sede === currentSede;
+
+      // Mostrar u ocultar
+      if (matchesSearch && matchesCategory && matchesSede) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  };
+
+  // 1. Evento Búsqueda
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      currentSearch = e.target.value.toLowerCase();
+      filterProducts();
+    });
+  }
+
+  // 2. Evento Dropdowns
   const dropdowns = document.querySelectorAll('.dropdown-container');
 
   dropdowns.forEach(dropdown => {
@@ -49,14 +94,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     toggle.addEventListener('click', (e) => {
       e.stopPropagation();
-      // Cerrar otros dropdowns abiertos
       document.querySelectorAll('.dropdown-menu.open').forEach(openMenu => {
         if (openMenu !== menu) {
           openMenu.classList.remove('open');
           openMenu.previousElementSibling.classList.remove('open');
         }
       });
-      // Abrir/cerrar el actual
       menu.classList.toggle('open');
       toggle.classList.toggle('open');
     });
@@ -64,14 +107,43 @@ document.addEventListener('DOMContentLoaded', () => {
     menu.addEventListener('click', (e) => {
       if (e.target.tagName === 'A') {
         e.preventDefault();
-        valueSpan.textContent = e.target.textContent;
-        // Cierra el menú después de seleccionar una opción
+        const isDefault = e.target.dataset.value === 'default';
+        const selectedText = e.target.textContent.trim();
+        
+        // Lógica para actualizar variables
+        if (toggle.dataset.target === 'categoria-menu') {
+          // Si eligen "Todas", volvemos al valor original "Categoría"
+          currentCategory = isDefault ? "Categoría" : selectedText;
+          valueSpan.textContent = currentCategory;
+        } else if (toggle.dataset.target === 'sede-menu') {
+          currentSede = isDefault ? "Sede" : selectedText;
+          valueSpan.textContent = currentSede;
+        }
+
+        filterProducts();
         menu.classList.remove('open');
         toggle.classList.remove('open');
       }
     });
   });
 
+  // 3. Botón Limpiar Filtros (La "Equis")
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      // Resetear variables
+      currentSearch = "";
+      currentCategory = "Categoría";
+      currentSede = "Sede";
+
+      // Resetear UI visual
+      if(searchInput) searchInput.value = "";
+      if(catLabel) catLabel.textContent = "Categoría";
+      if(sedeLabel) sedeLabel.textContent = "Sede";
+
+      // Ejecutar filtro limpio
+      filterProducts();
+    });
+  }
   /* ===== Lógica para cerrar menús al hacer clic fuera ===== */
   document.addEventListener('click', (e) => {
     // Cierra menú hamburguesa

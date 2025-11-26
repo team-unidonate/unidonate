@@ -34,41 +34,46 @@
   <main>
     <section class="explore-header">
       <h1>Explorar</h1>
-      <div class="filters">
+       <div class="filters">
         <div class="search-bar">
-          <input type="text" placeholder="Buscar">
-          <button aria-label="Buscar"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg></button>
+          <input type="text" id="search-input" placeholder="Buscar"> <button aria-label="Buscar"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg></button>
         </div>
+
         <div class="dropdown-container">
           <button class="dropdown-toggle" data-target="categoria-menu">
-            <span class="dropdown-value">Categoría</span>
+            <span class="dropdown-value" id="cat-label">Categoría</span>
             <svg class="dropdown-arrow" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"></path></svg>
           </button>
           <ul id="categoria-menu" class="dropdown-menu">
-            <li><a href="#">Libros</a></li>
+            <li><a href="#" data-value="default">Todas</a></li> <li><a href="#">Libros</a></li>
             <li><a href="#">Apuntes</a></li>
             <li><a href="#">Tecnología</a></li>
             <li><a href="#">Accesorios</a></li>
             <li><a href="#">Ropa</a></li>
           </ul>
         </div>
+
         <div class="dropdown-container">
           <button class="dropdown-toggle" data-target="sede-menu">
-            <span class="dropdown-value">Sede</span>
+            <span class="dropdown-value" id="sede-label">Sede</span>
             <svg class="dropdown-arrow" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"></path></svg>
           </button>
           <ul id="sede-menu" class="dropdown-menu">
-            <li><a href="#">Monterrico</a></li>
+            <li><a href="#" data-value="default">Todas</a></li> <li><a href="#">Monterrico</a></li>
             <li><a href="#">San Isidro</a></li>
             <li><a href="#">Villa</a></li>
             <li><a href="#">San Miguel</a></li>
           </ul>
         </div>
+
+        <button id="btn-clear-filters" class="btn-clear" title="Borrar filtros">
+          ✕ Limpiar
+        </button>
       </div>
     </section>
 
-    <section class="product-grid">
-      <article class="product-card">
+    <section class="product-grid" id="product-grid">
+      <article class="product-card" data-category="Libros" data-sede="Monterrico" data-title="Libro Cálculo I">
         <img src="assets/images/Libro_Image.jpg" alt="Libro de Cálculo">
         <h3>Libro Cálculo I</h3>
         <div class="card-buttons">
@@ -76,7 +81,8 @@
           <a href="Conversaciones.html" class="btn-card btn-request">Solicitar</a>
         </div>
       </article>
-      <article class="product-card">
+
+      <article class="product-card" data-category="Tecnología" data-sede="San Isidro" data-title="Calculadora">
         <img src="assets/images/Calculadora_Image.png" alt="Calculadora">
         <h3>Calculadora</h3>
         <div class="card-buttons">
@@ -84,7 +90,8 @@
           <a href="Conversaciones.html" class="btn-card btn-request">Solicitar</a>
         </div>
       </article>
-      <article class="product-card">
+
+      <article class="product-card" data-category="Accesorios" data-sede="San Miguel" data-title="Mochila">
         <img src="assets/images/Mochila_Image.png" alt="Mochila">
         <h3>Mochila</h3>
         <div class="card-buttons">
@@ -92,15 +99,17 @@
           <a href="Conversaciones.html" class="btn-card btn-request">Solicitar</a>
         </div>
       </article>
-      <article class="product-card">
-        <img src="assets/images/Apuntes_Image.jpg" alt="Hojas en blanco">
+
+      <article class="product-card" data-category="Apuntes" data-sede="Villa" data-title="Apuntes">
+        <img src="assets/images/Apuntes_Image.jpg" alt="Apuntes">
         <h3>Apuntes</h3>
         <div class="card-buttons">
           <a href="Producto2.html" class="btn-card btn-view">Ver</a>
           <a href="Conversaciones.html" class="btn-card btn-request">Solicitar</a>
         </div>
       </article>
-      <article class="product-card">
+
+      <article class="product-card" data-category="Accesorios" data-sede="Monterrico" data-title="Cartuchera">
         <img src="assets/images/Cartuchera_Image.png" alt="Cartuchera">
         <h3>Cartuchera</h3>
         <div class="card-buttons">
@@ -108,7 +117,8 @@
           <a href="Conversaciones.html" class="btn-card btn-request">Solicitar</a>
         </div>
       </article>
-      <article class="product-card">
+
+      <article class="product-card" data-category="Libros" data-sede="San Miguel" data-title="Cuaderno">
         <img src="assets/images/Cuaderno_Image.png" alt="Cuaderno">
         <h3>Cuaderno</h3>
         <div class="card-buttons">
@@ -126,13 +136,7 @@
       para una comunidad más sostenible y<br>
       colaborativa.
     </span>
-    <article>
-      <h4>Enlaces Rápidos</h4>
-      <a href="#">Inicio</a>
-      <a href="#">Cómo Funciona</a>
-      <a href="#">Nosotros</a>
-      <a href="#">Ayuda</a>
-    </article>
+
     <article>
       <h4>Legal</h4>
       <a href="#" id="terms-link"> Terminos y Condiciones </a>

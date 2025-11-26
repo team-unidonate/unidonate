@@ -162,6 +162,34 @@ footer small{ grid-area:copy; color:#8F8C8C; text-align:center }
 .modal-content ul { padding-left: 20px; margin: 0 0 16px; color: #000; }
 
 
+/* ===== Botón Limpiar Filtros ===== */
+.btn-clear {
+  background: #66D575;
+  border: 1px solid #000;
+  color:  #000;
+  padding: 12px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 100%; /* Para igualar altura con los dropdowns */
+}
+
+
+
+/* Ajuste responsive para que no se rompa en móviles */
+@media (max-width: 768px) {
+  .btn-clear {
+    width: 100%;
+    justify-content: center;
+    margin-top: 8px;
+  }
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 860px){
   .menu-toggle{ display:inline-block }
