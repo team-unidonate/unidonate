@@ -60,49 +60,59 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== Lógica de la Página de Edición ===== */
-  const imageUpload = document.getElementById('image-upload');
-  const editPreviewImg = document.getElementById('edit-preview-img');
+ /* ===== Lógica de la Página de Edición  ===== */
+  
+  // 1. Carga de Foto (US22)
+  // Corrección de IDs para que coincidan con tu HTML
+  const photoInput = document.getElementById('photo-upload'); 
+  const photoPreview = document.getElementById('photo-preview');
 
-  if (imageUpload && editPreviewImg) {
-    imageUpload.addEventListener('change', () => {
-      const file = imageUpload.files[0];
+  if (photoInput && photoPreview) {
+    photoInput.addEventListener('change', () => {
+      const file = photoInput.files[0];
       if (file) {
         const reader = new FileReader();
         reader.onload = (event) => {
-          editPreviewImg.src = event.target.result;
+          photoPreview.src = event.target.result;
         };
         reader.readAsDataURL(file);
       }
     });
   }
 
-  const editForm = document.getElementById('edit-form');
-  if (editForm) {
-    editForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Cambios guardados (simulación)');
+  // 2. Guardar Cambios (US03)
+  const editProfileForm = document.getElementById('edit-profile-form');
+  // Necesitamos el botón de guardar porque está FUERA del form en tu HTML
+  const saveBtn = document.querySelector('.form-actions .btn--primary');
+
+  if (saveBtn && editProfileForm) {
+    saveBtn.addEventListener('click', (e) => {
+      e.preventDefault(); // Evita recarga directa
+      
+      // Aquí podrías validar campos si quisieras
+      // Simulación de éxito
+      alert("✅ ¡Perfil actualizado correctamente!");
+      
+      // Redirección al Perfil para ver los cambios
+      window.location.href = "Profile.html";
     });
   }
 
-  /* ===== Lógica para cerrar menús al hacer clic fuera (UNIFICADA) ===== */
-  document.addEventListener('click', (e) => {
-    // Cierra el menú de hamburguesa
-    if (nav && nav.classList.contains('open') && !header.contains(e.target)) {
-      nav.classList.remove('open');
-      toggleBtn?.setAttribute('aria-expanded', 'false');
-    }
-    // Cierra el pop-up de perfil
-    if (popover && popover.classList.contains('open') && !popover.contains(e.target) && e.target !== perfilBtn) {
-      popover.classList.remove('open');
-      perfilBtn?.setAttribute('aria-expanded', 'false');
-    }
-    // Cierra dropdown de sede (si existe en la página)
-    const openDropdown = document.querySelector('.dropdown-menu.open');
-    if (openDropdown && !openDropdown.parentElement.contains(e.target)) {
-      openDropdown.classList.remove('open');
-    }
-  });
+  // 3. Eliminar Perfil (US10)
+  const deleteBtn = document.querySelector('.btn--danger');
+  
+  if (deleteBtn) {
+    deleteBtn.addEventListener('click', () => {
+      // Confirmación de seguridad
+      const confirmacion = confirm("⚠️ ¿Estás seguro de que quieres eliminar tu cuenta?\n\nEsta acción no se puede deshacer y perderás tu historial.");
+      
+      if (confirmacion) {
+        alert("🗑️ Tu cuenta ha sido eliminada.");
+        // Redirigir al inicio (Login/Landing)
+        window.location.href = "index.html";
+      }
+    });
+  }
 
   /* ===== Lógica de Modals del Footer ===== */
   const termsLink = document.getElementById('terms-link');
