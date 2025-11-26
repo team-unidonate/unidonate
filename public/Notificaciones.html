@@ -41,9 +41,13 @@
           <p>Entérate de solicitudes, mensajes y avisos del sistema.</p>
         </div>
         <div class="header-actions">
-          <button class="btn btn--secondary">Marcar todas como leídas</button>
-          <button class="btn btn--primary">Preferencias</button>
-        </div>
+          <button class="btn btn--secondary" id="mark-all-read">Marcar todas como leídas</button>
+          
+          <label class="toggle-switch" title="Activar/Desactivar notificaciones">
+            <input type="checkbox" id="notif-toggle" checked>
+            <span class="slider"></span>
+         </label>
+</div>
       </div>
     </section>
 
@@ -72,6 +76,8 @@
             <span class="notification-timestamp">hoy, 10:12</span>
             <button class="btn btn--outline btn--small">Abrir</button>
             <button class="btn btn--primary btn--small btn-mark-read">Marcar leída</button>
+            
+            <button class="btn-delete-notif" aria-label="Eliminar notificación">🗑️</button>
           </div>
         </article>
 
@@ -81,9 +87,11 @@
             <p class="notification-description">Calificar nos ayuda a mejorar el sistema de UniDonate</p>
           </div>
           <div class="notification-actions">
-            <span class="notification-timestamp">hoy, 08:00</span>
+            <span class="notification-timestamp">hoy, 10:12</span>
             <button class="btn btn--outline btn--small">Abrir</button>
             <button class="btn btn--primary btn--small btn-mark-read">Marcar leída</button>
+            
+            <button class="btn-delete-notif" aria-label="Eliminar notificación">🗑️</button>
           </div>
         </article>
         
@@ -93,9 +101,11 @@
             <p class="notification-description">"¿La bata sigue disponible? Puedo pasar mañana."</p>
           </div>
           <div class="notification-actions">
-            <span class="notification-timestamp">hoy, 08:00</span>
+            <span class="notification-timestamp">hoy, 10:12</span>
             <button class="btn btn--outline btn--small">Abrir</button>
             <button class="btn btn--primary btn--small btn-mark-read">Marcar leída</button>
+            
+            <button class="btn-delete-notif" aria-label="Eliminar notificación">🗑️</button>
           </div>
         </article>
       </section>
@@ -104,7 +114,7 @@
   <footer>
             <img src="assets/images/Logo.png" height="100" alt="UniDonate">
             <span>Plataforma de donaciones universitarias<br>para una comunidad más sostenible y<br>colaborativa.</span>
-            <article><h4>Enlaces Rápidos</h4><a href="#">Inicio</a><a href="#">Cómo Funciona</a><a href="#">Nosotros</a><a href="#">Ayuda</a></article>
+            
             <article><h4>Legal</h4>      <a href="#" id="terms-link"> Terminos y Condiciones </a>
       <a href="#" id="privacy-link"> Politica de Privacidad </a></article>
             <article><h4>Contáctanos</h4><p>Email: contacto@unidonate.com</p><p>Teléfono: +51 000 000 000</p></article>
