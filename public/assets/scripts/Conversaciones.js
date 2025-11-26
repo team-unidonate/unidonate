@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Evento para el botón de cambiar estado
+// Evento para el botón de cambiar estado
   changeStateBtn.addEventListener('click', () => {
     if (!currentItem) return;
 
@@ -72,6 +72,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (newStatus === 'entregado') {
       currentItem.classList.add('state--entregado');
       statusElement.textContent = 'Estado: Entregado';
+      
+      // ✨ NUEVO: Alerta de confirmación (US31 / US39) ✨
+      alert(`✅ ¡Excelente! Has marcado "${currentItem.dataset.title}" como ENTREGADO.\n\nGracias por completar la donación.`);
+      
     } else {
       currentItem.classList.remove('state--entregado');
       statusElement.textContent = 'Estado: Pendiente';
