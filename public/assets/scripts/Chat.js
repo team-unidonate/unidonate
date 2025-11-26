@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
       perfilBtn.setAttribute('aria-expanded', 'false');
     }
   });
-  /* ===== ✨ FIN DE LA CORRECCIÓN ✨ ===== */
+  /* =====  FIN DE LA CORRECCIÓN  ===== */
 });
 
 /* ====== LÓGICA PARA EL MODAL DE TÉRMINOS Y CONDICIONES ====== */
@@ -118,3 +118,58 @@ if (privacyLink && privacyModal && privacyOverlay && closePrivacyBtn) {
   // Cerrar modal al hacer clic en el fondo oscuro
   privacyOverlay.addEventListener('click', closePrivacyModal);
 }
+
+/* ===========================================================
+     LÓGICA DEL CHAT 
+     =========================================================== */
+  const messageForm = document.getElementById('message-form');
+  const messageInput = document.getElementById('message-input');
+  const messageList = document.getElementById('message-list');
+  const attachBtn = document.getElementById('attach-btn');
+  const fileInput = document.getElementById('file-input');
+
+  if (messageForm && messageInput && messageList) {
+    
+    // Función para agregar mensaje al DOM
+    const appendMessage = (text, type = 'sent') => {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `message message--${type}`;
+      msgDiv.innerHTML = `<p>${text}</p>`;
+      messageList.appendChild(msgDiv);
+      // Auto-scroll al final
+      messageList.scrollTop = messageList.scrollHeight;
+    };
+
+    // 1. Enviar mensaje (Texto)
+    messageForm.addEventListener('submit', (e) => {
+      e.preventDefault(); // Evita recargar la página
+      
+      const text = messageInput.value.trim();
+      if (text !== "") {
+        // Agrega mensaje del usuario (derecha)
+        appendMessage(text, 'sent');
+        messageInput.value = ""; // Limpia el input
+
+        // Simulación de respuesta automática (opcional, para demo)
+        setTimeout(() => {
+          appendMessage("¡Entendido! Gracias por tu mensaje.", 'received');
+        }, 1500);
+      }
+    });
+
+    // 2. Adjuntar archivo (Simulación US22)
+    if (attachBtn && fileInput) {
+      attachBtn.addEventListener('click', () => {
+        fileInput.click(); // Abre el selector de archivos nativo
+      });
+
+      fileInput.addEventListener('change', () => {
+        if (fileInput.files.length > 0) {
+          const fileName = fileInput.files[0].name;
+          // Simula el envío del archivo como mensaje de texto
+          appendMessage(`📎 Archivo adjunto: <strong>${fileName}</strong>`, 'sent');
+          fileInput.value = ""; // Resetea el input
+        }
+      });
+    }
+  }
