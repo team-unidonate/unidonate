@@ -178,6 +178,194 @@ footer small{ grid-area:copy; color:#8F8C8C; text-align:center }
 .modal-content h4:first-child { margin-top: 0; }
 .modal-content ul { padding-left: 20px; margin: 0 0 16px; color: #000; }
 
+/* ===== Estilos para Sistema de Recompensas (US27) ===== */
+
+/* Botón pequeño verde */
+.btn-reward {
+  background-color: #66D575;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.btn-reward:hover {
+  background-color: #41ba5d;
+  transform: scale(1.05);
+}
+
+/* El Mensaje Pop-up (Toast) */
+.reward-toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  background: linear-gradient(90deg, #66D575, #41ba5d);
+  color: white;
+  padding: 20px 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  font-size: 18px;
+  font-weight: 800;
+  text-align: center;
+  z-index: 200;
+  
+  /* Oculto por defecto */
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote */
+}
+
+/* Clase para mostrarlo */
+.reward-toast.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* ===== Estilos para el Fondo Oscuro de Recompensa ===== */
+
+.reward-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Color negro al 60% de opacidad */
+  z-index: 199; /* Justo debajo del mensaje (200) pero encima de todo lo demás */
+  
+  /* Estado inicial: oculto */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+/* Clase para mostrar el fondo */
+.reward-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Aseguramos que el mensaje tenga mayor z-index que el fondo */
+.reward-toast {
+  z-index: 200; 
+}
+
+/* ===== SECCIÓN CONFIGURACIÓN (MODO OSCURO) ===== */
+.settings-section {
+  margin-bottom: 30px;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.setting-item h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* ===== INTERRUPTOR (SWITCH TOGGLE) ===== */
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+/* Estado Activado */
+input:checked + .slider {
+  background-color: #66D575; /* Tu verde corporativo */
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+/* ===== ESTILOS DEL MODO OSCURO (CLASE GLOBAL) ===== */
+body.dark-mode {
+  background: linear-gradient(160deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: #f1f5f9;
+}
+
+/* Componentes en Oscuro */
+body.dark-mode .card, 
+body.dark-mode header, 
+body.dark-mode footer,
+body.dark-mode .profile-popover,
+body.dark-mode .dropdown-menu {
+  background-color: #2d2d2d;
+  border-color: #444;
+  color: #fff;
+}
+
+/* Textos Secundarios y Enlaces en Oscuro */
+body.dark-mode .card__subtitle,
+body.dark-mode .publication-card__meta, 
+body.dark-mode footer a {
+  color: #aaa;
+}
+
+/* Títulos en Oscuro */
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode h4,
+body.dark-mode .section-title {
+  color: #fff;
+}
+
+/* Inputs (si hay en la página) */
+body.dark-mode input, 
+body.dark-mode textarea {
+  background-color: #404040;
+  color: #fff;
+  border-color: #555;
+}
+
+/* Botones Secundarios en Oscuro */
+body.dark-mode .btn--secondary {
+  background-color: #404040;
+  color: #fff;
+  border-color: #555;
+}
+body.dark-mode .btn--secondary:hover {
+  background-color: #505050;
+}
 
 /* ===== Responsive ===== */
 @media (max-width: 860px){
