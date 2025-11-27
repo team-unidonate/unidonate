@@ -50,7 +50,10 @@
       <div class="product-info">
         <h1>Calculadora</h1>
         <p class="description">Calculadora Casio</p>
-        <p class="publisher">Publicado por victor@upc.edu.pe</p>
+        <p class="publisher">
+          Publicado por 
+          <a href="#" id="publisher-trigger" class="publisher-link">victor@upc.edu.pe</a>
+        </p>
         
         <div class="action-buttons">
           <a href="Conversaciones.html" class="btn btn-primary">Solicitar y chatear</a>
@@ -177,6 +180,33 @@
   </div>
   </footer>
 
+  <div id="user-profile-overlay" class="overlay"></div>
+  
+  <div id="user-profile-modal" class="user-modal">
+    <div class="user-modal__header">
+      <img src="assets/images/img_juan.jpg" alt="Víctor Pajuelo" class="user-modal__avatar">
+      <h2 class="user-modal__name">Víctor Pajuelo</h2>
+      <p class="user-modal__role">Estudiante de Ingeniería</p>
+    </div>
+
+    <div class="user-modal__stats">
+      
+      <div class="stat-row">
+        <span class="stat-number">4.9</span>
+        <div class="stars">★★★★★</div>
+        <span class="stat-label">Impacto como donante</span>
+      </div>
+
+      <div class="stat-row">
+        <span class="stat-number">5</span>
+        <div class="stars">★★★★<span style="opacity:0.5">★</span></div>
+        <span class="stat-label">Items recibidos</span>
+      </div>
+
+    </div>
+
+    <button id="close-profile-modal" class="btn btn-primary btn-full">Volver</button>
+  </div>
   <script src="assets/scripts/Producto6.js" defer></script>
 </body>
 </html>

@@ -200,3 +200,30 @@ if (privacyLink && privacyModal && privacyOverlay && closePrivacyBtn) {
       }
     });
   }
+
+  /* ===========================================================
+     LÓGICA: MODAL DE PERFIL DE USUARIO (US20)
+     =========================================================== */
+  const publisherLink = document.getElementById('publisher-trigger');
+  const userModal = document.getElementById('user-profile-modal');
+  const userOverlay = document.getElementById('user-profile-overlay');
+  const closeUserBtn = document.getElementById('close-profile-modal');
+
+  if (publisherLink && userModal && userOverlay) {
+    
+    // Abrir modal
+    publisherLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      userModal.classList.add('visible');
+      userOverlay.classList.add('visible');
+    });
+
+    // Cerrar modal
+    const closeUserModal = () => {
+      userModal.classList.remove('visible');
+      userOverlay.classList.remove('visible');
+    };
+
+    if (closeUserBtn) closeUserBtn.addEventListener('click', closeUserModal);
+    userOverlay.addEventListener('click', closeUserModal);
+  }

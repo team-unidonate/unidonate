@@ -130,3 +130,38 @@ if (privacyLink && privacyModal && privacyOverlay && closePrivacyBtn) {
       }
     });
   }
+
+
+  /* ===========================================================
+     LÓGICA: MODAL DE PERFIL DE USUARIO (US20)
+     =========================================================== */
+  const publisherLink = document.getElementById('publisher-trigger');
+  const userModal = document.getElementById('user-profile-modal');
+  const userOverlay = document.getElementById('user-profile-overlay');
+  const closeUserBtn = document.getElementById('close-profile-modal');
+
+  if (publisherLink && userModal && userOverlay) {
+    
+    // Abrir modal al hacer clic en el nombre/correo
+    publisherLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      userModal.classList.add('visible');
+      userOverlay.classList.add('visible');
+    });
+
+    // Función para cerrar
+    const closeUserModal = () => {
+      userModal.classList.remove('visible');
+      userOverlay.classList.remove('visible');
+    };
+
+    // Cerrar con el botón "Volver"
+    if (closeUserBtn) {
+      closeUserBtn.addEventListener('click', closeUserModal);
+    }
+
+    // Cerrar clicando fuera (overlay)
+    userOverlay.addEventListener('click', closeUserModal);
+  }
+
+  

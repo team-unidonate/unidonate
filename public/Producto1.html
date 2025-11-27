@@ -12,10 +12,10 @@
     <nav aria-label="Principal">
       <a href="Home.html">Home</a>
       <a href="Explorar.html">Explorar</a>
-      <a href="publicar.html">Publicar</a>
+      <a href="Publicar.html">Publicar</a>
       <a href="Conversaciones.html">Chat</a>
       <a href="Ayuda.html">Ayuda</a>
-      <a href="Profile.html" id="perfilBtn" class="Perfil">Perfil</a>
+      <a href="#" id="perfilBtn" class="Perfil">Perfil</a>
     </nav>
     <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
   </header>
@@ -44,7 +44,10 @@
       <div class="product-info">
         <h1>Libro Cálculo I</h1>
         <p class="description">Libro en buen estado, subrayado mínimo</p>
-        <p class="publisher">Publicado por maria@upc.edu.pe</p>
+        <p class="publisher">
+          Publicado por 
+          <a href="#" id="publisher-trigger" class="publisher-link">maria@upc.edu.pe</a>
+        </p>
         <div class="action-buttons">
           <a href="Conversaciones.html" class="btn btn-primary">Solicitar y chatear</a>
           <a href="Explorar.html" class="btn btn-secondary">Volver</a>
@@ -158,6 +161,33 @@
   </div>
         </footer>
   
+  <div id="user-profile-overlay" class="overlay"></div>
+  
+  <div id="user-profile-modal" class="user-modal">
+    <div class="user-modal__header">
+      <img src="assets/images/P2_Image.png" alt="Maria Henzi" class="user-modal__avatar">
+      <h2 class="user-modal__name">Maria Henzi</h2>
+      <p class="user-modal__role">Impacto como receptor</p>
+    </div>
+
+    <div class="user-modal__stats">
+      
+      <div class="stat-row">
+        <span class="stat-number">2.5</span>
+        <div class="stars">★★<span class="star-half">★</span><span class="star-empty">★★</span></div>
+        <span class="stat-label">Impacto como donante</span>
+      </div>
+
+      <div class="stat-row">
+        <span class="stat-number">5</span>
+        <div class="stars">★★★★★</div>
+        <span class="stat-label">Items recibidos</span>
+      </div>
+
+    </div>
+
+    <button id="close-profile-modal" class="btn btn-primary btn-full">Volver</button>
+  </div>
 
   <script src="assets/scripts/Producto1.js" defer></script>
 </body>
