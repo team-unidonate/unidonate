@@ -148,6 +148,34 @@
   </div>
   </footer>
 
+  <div id="recovery-overlay" class="overlay"></div>
+  
+  <div id="recovery-modal" class="modal-custom">
+    <button id="recovery-close-btn" class="modal-close-btn" aria-label="Cerrar">✕</button>
+    
+    <div id="recovery-step-1" class="recovery-step">
+      <h2 style="text-align: center; margin-bottom: 20px;">Recuperar Cuenta</h2>
+      
+      <label for="rec-email">Correo Institucional:</label>
+      <input type="email" id="rec-email" placeholder="usuario@universidad.edu.pe" class="input-custom">
+      
+      <button type="button" id="btn-send-code" class="btn-primary" style="width: 100%; margin-top: 20px;">Enviar Código</button>
+    </div>
+
+    <div id="recovery-step-2" class="recovery-step" style="display: none;">
+      <h2 style="text-align: center; margin-bottom: 20px;">Verificación</h2>
+      <p style="text-align: center; font-size: 14px; color: #666; margin-bottom: 20px;">Hemos enviado un código a tu correo.</p>
+
+      <label for="rec-code">Código de verificación:</label>
+      <input type="text" id="rec-code" placeholder="Ej. 123456" class="input-custom">
+
+      <label for="rec-new-pass" style="margin-top: 15px; display: block;">Nueva Contraseña:</label>
+      <input type="password" id="rec-new-pass" placeholder="******" class="input-custom">
+      
+      <button type="button" id="btn-change-pass" class="btn-primary" style="width: 100%; margin-top: 20px;">Cambiar Contraseña</button>
+    </div>
+  </div>
+
   <script src="assets/scripts/Login.js" defer></script>
 </body>
 </html>

@@ -110,3 +110,91 @@ const btnLogin = document.getElementById('btn-login');
       window.location.href = "Home.html"; 
     });
   }
+
+
+/* ===========================================================
+     LÓGICA DE RECUPERACIÓN DE CONTRASEÑA (Pop-up Flujo)
+     =========================================================== */
+  
+  // Elementos del DOM
+  const btnForgotPass = document.querySelector('.btn-sec'); // El botón "RECUPERAR CONTRASEÑA" del form principal
+  const recoveryModal = document.getElementById('recovery-modal');
+  const recoveryOverlay = document.getElementById('recovery-overlay');
+  const recoveryCloseBtn = document.getElementById('recovery-close-btn');
+  
+  // Elementos de los pasos
+  const step1 = document.getElementById('recovery-step-1');
+  const step2 = document.getElementById('recovery-step-2');
+  
+  // Inputs y Botones del Modal
+  const btnSendCode = document.getElementById('btn-send-code');
+  const btnChangePass = document.getElementById('btn-change-pass');
+  const inputRecEmail = document.getElementById('rec-email');
+  const inputRecCode = document.getElementById('rec-code');
+  const inputRecNewPass = document.getElementById('rec-new-pass');
+
+  // Funciones de Abrir/Cerrar Modal
+  const openRecoveryModal = () => {
+    recoveryModal.classList.add('visible');
+    recoveryOverlay.classList.add('visible');
+    // Resetear a paso 1 siempre que se abre
+    step1.style.display = 'block';
+    step2.style.display = 'none';
+    inputRecEmail.value = '';
+    inputRecCode.value = '';
+    inputRecNewPass.value = '';
+  };
+
+  const closeRecoveryModal = () => {
+    recoveryModal.classList.remove('visible');
+    recoveryOverlay.classList.remove('visible');
+  };
+
+  // Eventos de Apertura
+  if (btnForgotPass) {
+    btnForgotPass.addEventListener('click', (e) => {
+      e.preventDefault(); // Evita submit si está dentro de form
+      openRecoveryModal();
+    });
+  }
+
+  // Eventos de Cierre
+  if (recoveryCloseBtn) recoveryCloseBtn.addEventListener('click', closeRecoveryModal);
+  if (recoveryOverlay) recoveryOverlay.addEventListener('click', closeRecoveryModal);
+
+  // --- LÓGICA PASO 1: Enviar Código ---
+  if (btnSendCode) {
+    btnSendCode.addEventListener('click', () => {
+      const email = inputRecEmail.value.trim();
+
+      // Validación simple de correo
+      if (!email || !email.includes('@') || !email.includes('.')) {
+        alert("⚠️ Por favor, ingresa un correo institucional válido.");
+        return;
+      }
+
+      // Simulación de envío
+      alert(`✅ Código enviado a: ${email}`);
+      
+      // Cambio de vista al PASO 2
+      step1.style.display = 'none';
+      step2.style.display = 'block';
+    });
+  }
+
+  // --- LÓGICA PASO 2: Cambiar Contraseña ---
+  if (btnChangePass) {
+    btnChangePass.addEventListener('click', () => {
+      const code = inputRecCode.value.trim();
+      const newPass = inputRecNewPass.value.trim();
+
+      if (!code || !newPass) {
+        alert("⚠️ Por favor, ingresa el código y tu nueva contraseña.");
+        return;
+      }
+
+      // Simulación de éxito
+      alert("🎉 ¡Contraseña actualizada correctamente!\nAhora puedes iniciar sesión.");
+      closeRecoveryModal();
+    });
+  }
