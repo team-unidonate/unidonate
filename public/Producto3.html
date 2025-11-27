@@ -49,7 +49,10 @@
       <div class="product-info">
         <h1>Cuaderno Para Apuntes</h1>
         <p class="description">Cuaderno Cuadriculado</p>
-        <p class="publisher">Publicado por joshue@upc.edu.pe</p>
+        <p class="publisher">
+          Publicado por 
+          <a href="#" id="publisher-trigger" class="publisher-link">joshue@upc.edu.pe</a>
+        </p>
         
         <div class="action-buttons">
           <a href="Conversaciones.html" class="btn btn-primary">Solicitar y chatear</a>
@@ -175,7 +178,33 @@
     </div>
   </div>
   </footer>
+  <div id="user-profile-overlay" class="overlay"></div>
+  
+  <div id="user-profile-modal" class="user-modal">
+    <div class="user-modal__header">
+      <img src="assets/images/P4_Image.png" alt="Joshue Diaz" class="user-modal__avatar">
+      <h2 class="user-modal__name">Joshue Diaz</h2>
+      <p class="user-modal__role">Estudiante de Derecho</p>
+    </div>
 
+    <div class="user-modal__stats">
+      
+      <div class="stat-row">
+        <span class="stat-number">4.8</span>
+        <div class="stars">★★★★<span style="opacity:0.5">★</span></div>
+        <span class="stat-label">Impacto como donante</span>
+      </div>
+
+      <div class="stat-row">
+        <span class="stat-number">8</span>
+        <div class="stars">★★★★★</div>
+        <span class="stat-label">Items recibidos</span>
+      </div>
+
+    </div>
+
+    <button id="close-profile-modal" class="btn btn-primary btn-full">Volver</button>
+  </div>
   <script src="assets/scripts/Producto3.js" defer></script>
 </body>
 </html>
