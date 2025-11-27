@@ -59,8 +59,12 @@
               <span class="impact-card__score">2</span>
               <span class="impact-card__label">Items entregados</span>
             </div>
-            <div class="stars">
-              <span class="stars--filled">★★★★★</span>
+            
+            <div class="impact-card__actions">
+              <div class="stars">
+                <span class="stars--filled">★★★★★</span>
+              </div>
+              <button id="btn-get-reward" class="btn-reward">Obtener Recompensa</button>
             </div>
           </div>
         </article>
@@ -74,6 +78,15 @@
             <div class="stars"><span class="stars--filled">★</span><span class="stars--empty">★★★★</span></div>
           </div>
         </article>
+      </div>
+    </section>
+    <section class="settings-section">
+      <div class="setting-item">
+        <h3>Modo Oscuro</h3>
+        <label class="theme-switch" title="Activar Modo Oscuro">
+          <input type="checkbox" id="dark-mode-toggle">
+          <span class="slider round"></span>
+        </label>
       </div>
     </section>
 
@@ -203,7 +216,10 @@
     </div>
   </div>
   </footer>
-
+  <div id="reward-overlay" class="reward-overlay"></div>
+  <div id="reward-popup" class="reward-toast">
+    🎉 ¡Conseguiste un crédito extracurricular!
+  </div>
   <script src="assets/scripts/profile.js"></script>
 </body>
 </html>
