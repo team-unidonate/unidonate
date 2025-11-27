@@ -172,3 +172,31 @@ if (privacyLink && privacyModal && privacyOverlay && closePrivacyBtn) {
   // Cerrar modal al hacer clic en el fondo oscuro
   privacyOverlay.addEventListener('click', closePrivacyModal);
 }
+
+/* ===========================================================
+     LÓGICA DEL BOTÓN LIKE (US29)
+     =========================================================== */
+  const likeBtn = document.getElementById('like-btn');
+
+  if (likeBtn) {
+    // Revisar si ya le dio like antes (Opcional: persistencia simple)
+    const isLiked = localStorage.getItem('product_1_liked') === 'true';
+    if (isLiked) {
+      likeBtn.classList.add('liked');
+    }
+
+    likeBtn.addEventListener('click', () => {
+      // Alternar clase visual
+      likeBtn.classList.toggle('liked');
+      
+      // Guardar estado y dar feedback
+      if (likeBtn.classList.contains('liked')) {
+        localStorage.setItem('product_1_liked', 'true');
+        // Opcional: Pequeña animación o mensaje
+        console.log("👍 Like agregado");
+      } else {
+        localStorage.setItem('product_1_liked', 'false');
+        console.log("👎 Like removido");
+      }
+    });
+  }
