@@ -24,21 +24,6 @@ La plataforma permite que los usuarios publiquen y soliciten objetos de manera r
 
 ---
 
-## Imágenes del Proyecto
-
-*(Puedes reemplazar las rutas cuando subas tus imágenes a GitHub)*
-
-### Landing Page (mockup)
-![Landing Page](./assets/landing_mockup.png)
-
-### Aplicación Móvil – Android
-![Android Mockup](./assets/android_mockup.png)
-
-### Aplicación Móvil – iOS
-![iOS Mockup](./assets/ios_mockup.png)
-
----
-
 ## Características
 
 - Acceso exclusivo con correo institucional.
