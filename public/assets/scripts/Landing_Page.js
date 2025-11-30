@@ -64,18 +64,13 @@ if (privacyLink && privacyModal && privacyOverlay && closePrivacyBtn) {
   privacyOverlay.addEventListener('click', closePrivacyModal);
 }
 
-
-/* ===========================================================
-     1. LÓGICA DEL VIDEO ABOUT THE TEAM
-     =========================================================== */
   const teamLink = document.getElementById('about-team-link');
   const videoModal = document.getElementById('video-modal');
   const videoOverlay = document.getElementById('video-overlay');
   const closeVideoBtn = document.getElementById('video-close-btn');
   const videoIframe = document.getElementById('team-video-iframe');
   
-  // URL del video (formato embed)
-  const videoURL = "https://www.youtube.com/embed/0_wW5nw3_uE?autoplay=1";
+  const videoURL = "https://www.youtube.com/embed/67lnSrwIOCI?autoplay=1";
 
   if (teamLink && videoModal && videoOverlay) {
     
@@ -83,14 +78,12 @@ if (privacyLink && privacyModal && privacyOverlay && closePrivacyBtn) {
       e.preventDefault();
       videoModal.classList.add('visible');
       videoOverlay.classList.add('visible');
-      // Asignamos la URL al abrir para que cargue
       videoIframe.src = videoURL;
     };
 
     const closeVideo = () => {
       videoModal.classList.remove('visible');
       videoOverlay.classList.remove('visible');
-      // Quitamos la URL al cerrar para que deje de sonar
       videoIframe.src = "";
     };
 
