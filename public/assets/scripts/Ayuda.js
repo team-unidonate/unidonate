@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     perfilBtn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      if (nav && nav.classList.contains('open')) {
+      if (nav?.classList.contains('open')) {
         nav.classList.remove('open');
         toggleBtn?.setAttribute('aria-expanded', 'false');
       }
@@ -37,12 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   document.addEventListener('click', (e) => {
-    if (nav && nav.classList.contains('open') && !header.contains(e.target)) {
+    if (nav?.classList.contains('open') && !header.contains(e.target)) {
       nav.classList.remove('open');
       toggleBtn?.setAttribute('aria-expanded', 'false');
     }
 
-    if (popover && popover.classList.contains('open') && !popover.contains(e.target) && e.target !== perfilBtn) {
+    if (popover?.classList.contains('open') && !popover.contains(e.target) && e.target !== perfilBtn) {
       popover.classList.remove('open');
       perfilBtn?.setAttribute('aria-expanded', 'false');
     }
@@ -53,13 +53,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const messageInput = document.getElementById('message-input');
 
   if (messageList && messageForm && messageInput) {
-  const addMessage = (sender, content) => {
-    const messageDiv = document.createElement('div');
-    messageDiv.classList.add('message', `message--${sender}`);
 
-    let bubbleContent = '';
-    if (sender === 'bot' || sender === 'typing') {
-      bubbleContent += `
+    const addMessage = (sender, content) => {
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('message', `message--${sender}`);
+
+      let bubbleContent = '';
+      if (sender === 'bot' || sender === 'typing') {
+        bubbleContent += `
         <div class="message__avatar">
           <svg viewBox="0 0 24 24">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10
@@ -68,97 +69,113 @@ document.addEventListener('DOMContentLoaded', () => {
             </path>
           </svg>
         </div>`;
-    }
-
-    bubbleContent += `<div class="message__bubble">${content}</div>`;
-    messageDiv.innerHTML = bubbleContent;
-
-    if (sender === 'typing') {
-      messageDiv.id = 'typing-indicator';
-      messageDiv.classList.add('message--typing');
-    }
-
-    messageList.appendChild(messageDiv);
-    messageList.scrollTop = messageList.scrollHeight;
-  };
-
-  // 🔹 Llamada a Gemini por fetch
-  async function getBotResponse(userInput) {
-    const apiKey = "AIzaSyCF0zd-Y7aF4wn7ppMNsJsdcUxphviEQnI"; // <-- pega tu clave nueva AQUÍ
-
-    const url = `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
-
-    const body = {
-      contents: [
-        {
-          role: "user",
-          parts: [
-            {
-              text:
-                "Actúa como asistente de la plataforma UniDonate. " +
-                "Responde de forma corta, clara y en español. " +
-                "Pregunta del usuario: " + userInput
-            }
-          ]
-        }
-      ]
-    };
-
-    try {
-      const res = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
-      });
-
-      if (!res.ok) {
-        console.error("Error HTTP Gemini:", res.status, await res.text());
-        return "Ocurrió un error al conectar con el servicio de IA.";
       }
 
-      const data = await res.json();
+      bubbleContent += `<div class="message__bubble">${content}</div>`;
+      messageDiv.innerHTML = bubbleContent;
 
-      const parts = data.candidates?.[0]?.content?.parts || [];
-      const text =
-        parts.map((p) => p.text || "").join(" ").trim() ||
-        "No entendí, ¿puedes repetirlo?";
+      if (sender === 'typing') {
+        messageDiv.id = 'typing-indicator';
+        messageDiv.classList.add('message--typing');
+      }
 
-      return text;
-    } catch (e) {
-      console.error("Error fetch Gemini:", e);
-      return "Hubo un error al conectarme con Gemini.";
+      messageList.appendChild(messageDiv);
+      messageList.scrollTop = messageList.scrollHeight;
+    };
+
+    const CONTEXTO_UNIDONATE = `
+UniDonate es una plataforma universitaria para donar y solicitar materiales académicos
+de forma sencilla, segura y sostenible.
+
+FUNCIONES PRINCIPALES:
+- Publicar donaciones (foto, categoría, estado, detalles).
+- Solicitar artículos desde la sección Explorar.
+- Chat interno seguro entre donante y solicitante.
+- Perfiles validados con correo institucional.
+- Historial de donaciones.
+- Sistema enfocado en reutilizar materiales y ayudar a estudiantes.
+
+REGLAS DEL BOT:
+- Solo responde preguntas relacionadas con UniDonate.
+- Si el usuario pregunta algo fuera del proyecto, responde:
+  "Solo puedo responder preguntas relacionadas con UniDonate."
+- Sé claro, breve y directo.
+- No inventes funciones que no existen en la plataforma.
+`;
+
+    async function getBotResponse(userInput) {
+      const apiKey = "AIzaSyCF0zd-Y7aF4wn7ppMNsJsdcUxphviEQnI";
+
+      const url = `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+
+      const body = {
+        contents: [
+          {
+            role: "user",
+            parts: [
+              {
+                text: `
+                  CONTEXTO:
+                  ${CONTEXTO_UNIDONATE}
+
+                  PREGUNTA DEL USUARIO:
+                  ${userInput}
+                `
+              }
+            ]
+          }
+        ]
+      };
+
+      try {
+        const res = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
+
+        if (!res.ok) {
+          console.error("Error HTTP Gemini:", res.status, await res.text());
+          return "Ocurrió un error al conectar con el servicio de IA.";
+        }
+
+        const data = await res.json();
+        const parts = data.candidates?.[0]?.content?.parts || [];
+        const text =
+          parts.map((p) => p.text || "").join(" ").trim() ||
+          "No entendí, ¿puedes repetirlo?";
+
+        return text;
+      } catch (e) {
+        console.error("Error fetch Gemini:", e);
+        return "Hubo un error al conectarme con Gemini.";
+      }
     }
-  }
 
-  // 🔹 Envío del formulario
-  messageForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const userInput = messageInput.value.trim();
-    if (userInput === '') return;
+    messageForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const userInput = messageInput.value.trim();
+      if (userInput === '') return;
 
-    // Mensaje del usuario
-    addMessage('user', `<p>${userInput}</p>`);
-    messageInput.value = '';
+      addMessage('user', `<p>${userInput}</p>`);
+      messageInput.value = '';
 
-    // Indicador "escribiendo..."
-    addMessage(
-      'typing',
-      `<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>`
-    );
+      addMessage(
+        'typing',
+        `<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>`
+      );
 
-    // Llamar a Gemini
-    const botReply = await getBotResponse(userInput);
+      const botReply = await getBotResponse(userInput);
 
-    const typingIndicator = document.getElementById('typing-indicator');
-    if (typingIndicator) typingIndicator.remove();
+      const typingIndicator = document.getElementById('typing-indicator');
+      if (typingIndicator) typingIndicator.remove();
 
-    addMessage('bot', `<p>${botReply}</p>`);
-  });
+      addMessage('bot', `<p>${botReply}</p>`);
+    });
 
-  // Mensaje inicial del bot
-  setTimeout(() => {
-    addMessage('bot', `<p>¡Hola! Soy tu asistente virtual. Escribe tus dudas para que pueda ayudarte.</p>`);
-  }, 500);
+    setTimeout(() => {
+      addMessage('bot', `<p>¡Hola! Soy tu asistente de UniDonate. ¿En qué puedo ayudarte?</p>`);
+    }, 500);
   }
 
   const termsLink = document.getElementById('terms-link');
