@@ -152,13 +152,15 @@
       <article>
         <form action="formulario" method="post">
           <label>Nombre</label> <br>
-          <input type="text" placeholder="Tu nombre"> <br>
+          <input type="text" id="contact-name" placeholder="Tu nombre"> <br>
+          
           <label>Correo</label><br>
-          <input type="email" placeholder="tu@universidad.edu.pe"> <br>
+          <input type="email" id="contact-email" placeholder="tu@universidad.edu.pe"> <br>
+          
           <label>Mensaje</label> <br>
-          <input type="text" placeholder="Cuentanos en que te ayudamos">
+          <input type="text" id="contact-message" placeholder="Cuentanos en que te ayudamos">
         </form>
-        <button type="button"> Enviar </button>
+        <button type="button" id="contact-submit"> Enviar </button>
       </article>
     </div>
 
@@ -183,6 +185,7 @@
       <a href="#ComoFunciona"> Como Funciona </a>
       <a href="#Nosotros"> Nosotros </a>
       <a href="#Contactanos"> Ayuda </a>
+      <a href="#" id="about-team-link"> About The Team (Video) </a>
     </article>
 
     <article>
@@ -285,6 +288,20 @@
     </div>
   </div>
   </footer>
+
+  <div id="video-overlay" class="overlay"></div>
+  
+  <div id="video-modal" class="modal video-modal-content">
+    <div class="modal-header">
+      <h2>Nuestro Equipo</h2>
+      <button id="video-close-btn" class="modal-close-btn" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="modal-content">
+      <div class="video-responsive">
+        <iframe id="team-video-iframe" width="100%" height="100%" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
 
   <script src="assets/scripts/Landing_Page.js"></script>
 </body>
