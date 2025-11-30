@@ -157,6 +157,42 @@ footer small { grid-area: copy; color:#aab4c2; text-align: center; }
 .modal-content h4:first-child { margin-top: 0; }
 .modal-content ul { padding-left: 20px; margin: 0 0 16px; color: #000; }
 
+
+
+.video-modal-content {
+  max-width: 800px; 
+  width: 90%;
+  background-color: #000; 
+  height: auto;
+  max-height: 90vh;
+  top: 50%; 
+  transform: translate(-50%, -50%) !important; 
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.video-responsive {
+  position: relative;
+  padding-bottom: 56.25%; 
+  height: 0;
+  overflow: hidden;
+}
+
+.video-responsive iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video-modal-content .modal-header {
+  background-color: #fff;
+  padding: 10px 16px;
+}
+
+
+
 @media (min-width: 640px) {
   .modal {
     top: 50%;

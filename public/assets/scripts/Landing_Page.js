@@ -63,3 +63,71 @@ if (privacyLink && privacyModal && privacyOverlay && closePrivacyBtn) {
 
   privacyOverlay.addEventListener('click', closePrivacyModal);
 }
+
+
+/* ===========================================================
+     1. LÓGICA DEL VIDEO ABOUT THE TEAM
+     =========================================================== */
+  const teamLink = document.getElementById('about-team-link');
+  const videoModal = document.getElementById('video-modal');
+  const videoOverlay = document.getElementById('video-overlay');
+  const closeVideoBtn = document.getElementById('video-close-btn');
+  const videoIframe = document.getElementById('team-video-iframe');
+  
+  // URL del video (formato embed)
+  const videoURL = "https://www.youtube.com/embed/0_wW5nw3_uE?autoplay=1";
+
+  if (teamLink && videoModal && videoOverlay) {
+    
+    const openVideo = (e) => {
+      e.preventDefault();
+      videoModal.classList.add('visible');
+      videoOverlay.classList.add('visible');
+      // Asignamos la URL al abrir para que cargue
+      videoIframe.src = videoURL;
+    };
+
+    const closeVideo = () => {
+      videoModal.classList.remove('visible');
+      videoOverlay.classList.remove('visible');
+      // Quitamos la URL al cerrar para que deje de sonar
+      videoIframe.src = "";
+    };
+
+    teamLink.addEventListener('click', openVideo);
+    closeVideoBtn.addEventListener('click', closeVideo);
+    videoOverlay.addEventListener('click', closeVideo);
+  }
+
+  const contactSubmit = document.getElementById('contact-submit');
+  const contactName = document.getElementById('contact-name');
+  const contactEmail = document.getElementById('contact-email');
+  const contactMessage = document.getElementById('contact-message');
+
+  if (contactSubmit) {
+    contactSubmit.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      
+      if (contactName.value.trim() === "" || 
+          contactEmail.value.trim() === "" || 
+          contactMessage.value.trim() === "") {
+        alert("⚠️ Por favor, completa todos los campos antes de enviar.");
+        return;
+      }
+
+      
+      if (!contactEmail.value.includes('@')) {
+        alert("⚠️ Por favor, ingresa un correo válido.");
+        return;
+      }
+
+      
+      alert(`✅ ¡Mensaje enviado con éxito!\n\nGracias ${contactName.value}, el equipo de Uni-Donate te contactará pronto.`);
+      
+      
+      contactName.value = "";
+      contactEmail.value = "";
+      contactMessage.value = "";
+    });
+  }
