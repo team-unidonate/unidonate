@@ -1,12 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-  /* ===== Lógica del Header (Menú hamburguesa y Popover de Perfil) REUTILIZADO ===== */
   const header = document.querySelector('header');
   const nav = header?.querySelector('nav');
   const toggleBtn = header?.querySelector('.menu-toggle');
   const perfilBtn = document.getElementById('perfilBtn');
   const popover = document.getElementById('perfilPopover');
 
-  // Menú Hamburguesa
   if (toggleBtn && nav) {
     toggleBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -15,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Popover de Perfil
   if (perfilBtn && popover) {
     const openPopover = () => {
       const rect = perfilBtn.getBoundingClientRect();
@@ -39,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== Lógica para Dropdowns del Formulario (Similar a Explorar) ===== */
   const dropdowns = document.querySelectorAll('.dropdown-container');
 
   dropdowns.forEach(dropdown => {
@@ -69,19 +65,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ===== Lógica para cerrar menús al hacer clic fuera ===== */
   document.addEventListener('click', (e) => {
-    // Cierra menú hamburguesa
     if (nav && nav.classList.contains('open') && !header.contains(e.target)) {
       nav.classList.remove('open');
       toggleBtn?.setAttribute('aria-expanded', 'false');
     }
-    // Cierra popover de perfil
     if (popover && popover.classList.contains('open') && !popover.contains(e.target) && e.target !== perfilBtn) {
       popover.classList.remove('open');
       perfilBtn.setAttribute('aria-expanded', 'false');
     }
-    // Cierra dropdowns de formulario
     document.querySelectorAll('.dropdown-menu.open').forEach(openMenu => {
       if (!openMenu.parentElement.contains(e.target)) {
         openMenu.classList.remove('open');
@@ -91,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-/* ====== LÓGICA PARA EL MODAL DE TÉRMINOS Y CONDICIONES ====== */
 const termsLink = document.getElementById('terms-link');
 const termsModal = document.getElementById('terms-modal');
 const termsOverlay = document.getElementById('terms-overlay');
@@ -108,20 +99,16 @@ const closeModal = () => {
 };
 
 if (termsLink && termsModal && termsOverlay && closeModalBtn) {
-  // Abrir modal al hacer clic en el enlace
   termsLink.addEventListener('click', (e) => {
     e.preventDefault();
     openModal();
   });
 
-  // Cerrar modal con el botón de flecha
   closeModalBtn.addEventListener('click', closeModal);
 
-  // Cerrar modal al hacer clic en el fondo oscuro
   termsOverlay.addEventListener('click', closeModal);
 }
 
-/* ====== LÓGICA PARA EL MODAL DE POLÍTICA DE PRIVACIDAD ====== */
 const privacyLink = document.getElementById('privacy-link');
 const privacyModal = document.getElementById('privacy-modal');
 const privacyOverlay = document.getElementById('privacy-overlay');
@@ -138,29 +125,20 @@ const closePrivacyModal = () => {
 };
 
 if (privacyLink && privacyModal && privacyOverlay && closePrivacyBtn) {
-  // Abrir modal al hacer clic en el enlace
   privacyLink.addEventListener('click', (e) => {
     e.preventDefault();
     openPrivacyModal();
   });
 
-  // Cerrar modal con el botón de flecha
   closePrivacyBtn.addEventListener('click', closePrivacyModal);
 
-  // Cerrar modal al hacer clic en el fondo oscuro
   privacyOverlay.addEventListener('click', closePrivacyModal);
 }
 
-/* ===========================================================
-     LÓGICA DE PUBLICACIÓN 
-     =========================================================== */
   const btnPublishAction = document.getElementById('btn-publish-action');
   const inputTitulo = document.getElementById('titulo');
   const inputDescripcion = document.getElementById('descripcion');
-  
-  // Elementos para leer el valor de los dropdowns
-  // (Asumiendo que el texto del botón cambia al seleccionar una opción, 
-  // tal como lo programaste en la lógica de dropdowns anterior)
+
   const categoriaBtn = document.getElementById('categoria');
   const sedeBtn = document.getElementById('sede');
 
@@ -168,24 +146,18 @@ if (privacyLink && privacyModal && privacyOverlay && closePrivacyBtn) {
     btnPublishAction.addEventListener('click', (e) => {
       e.preventDefault();
 
-      // 1. Obtener valores
       const titulo = inputTitulo.value.trim();
       const descripcion = inputDescripcion.value.trim();
-      // Leemos el texto dentro del span .dropdown-value
       const categoria = categoriaBtn.querySelector('.dropdown-value').textContent.trim();
       const sede = sedeBtn.querySelector('.dropdown-value').textContent.trim();
 
-      // 2. Validación (US19)
       if (!titulo || !descripcion) {
         alert("⚠️ Por favor, completa el título y la descripción del objeto.");
         return;
       }
 
-      // 3. Confirmación y Redirección (US47)
-      // Aquí simulamos que se envía al servidor
       alert(`✅ ¡Publicación exitosa!\n\nObjeto: ${titulo}\nCategoría: ${categoria}\nSede: ${sede}\n\nTu donación ahora es visible para la comunidad.`);
       
-      // Redirigir al Home (o a "Mis Publicaciones" si tuvieras esa página lista)
       window.location.href = "Explorar.html";
     });
   }

@@ -1,12 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-  /* ===== Lógica del Header (Menú hamburguesa y Popover de Perfil) REUTILIZADO ===== */
   const header = document.querySelector('header');
   const nav = header?.querySelector('nav');
   const toggleBtn = header?.querySelector('.menu-toggle');
   const perfilBtn = document.getElementById('perfilBtn');
   const popover = document.getElementById('perfilPopover');
 
-  // Menú Hamburguesa
   if (toggleBtn && nav) {
     toggleBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -15,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Popover de Perfil
   if (perfilBtn && popover) {
     const openPopover = () => {
       const rect = perfilBtn.getBoundingClientRect();
@@ -39,23 +36,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
- /* ===========================================================
-     LÓGICA DE BÚSQUEDA Y FILTROS (US05 y US15)
-     =========================================================== */
   const searchInput = document.getElementById('search-input');
   const cards = document.querySelectorAll('.product-card');
   const clearBtn = document.getElementById('btn-clear-filters');
   
-  // Etiquetas visuales de los botones dropdown
   const catLabel = document.getElementById('cat-label');
   const sedeLabel = document.getElementById('sede-label');
 
-  // Variables de estado
   let currentSearch = "";
   let currentCategory = "Categoría"; 
   let currentSede = "Sede";          
 
-  // --- Función de Filtrado ---
   const filterProducts = () => {
     cards.forEach(card => {
       const title = card.dataset.title.toLowerCase();
@@ -63,11 +54,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const sede = card.dataset.sede;
 
       const matchesSearch = title.includes(currentSearch);
-      // Si es "Categoría" (default) muestra todo, si no, debe coincidir
       const matchesCategory = currentCategory === "Categoría" || category === currentCategory;
       const matchesSede = currentSede === "Sede" || sede === currentSede;
 
-      // Mostrar u ocultar
       if (matchesSearch && matchesCategory && matchesSede) {
         card.style.display = "block";
       } else {
@@ -76,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  // 1. Evento Búsqueda
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
       currentSearch = e.target.value.toLowerCase();
@@ -84,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. Evento Dropdowns
   const dropdowns = document.querySelectorAll('.dropdown-container');
 
   dropdowns.forEach(dropdown => {
@@ -110,9 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const isDefault = e.target.dataset.value === 'default';
         const selectedText = e.target.textContent.trim();
         
-        // Lógica para actualizar variables
         if (toggle.dataset.target === 'categoria-menu') {
-          // Si eligen "Todas", volvemos al valor original "Categoría"
           currentCategory = isDefault ? "Categoría" : selectedText;
           valueSpan.textContent = currentCategory;
         } else if (toggle.dataset.target === 'sede-menu') {
@@ -127,36 +112,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 3. Botón Limpiar Filtros (La "Equis")
   if (clearBtn) {
     clearBtn.addEventListener('click', () => {
-      // Resetear variables
       currentSearch = "";
       currentCategory = "Categoría";
       currentSede = "Sede";
 
-      // Resetear UI visual
       if(searchInput) searchInput.value = "";
       if(catLabel) catLabel.textContent = "Categoría";
       if(sedeLabel) sedeLabel.textContent = "Sede";
 
-      // Ejecutar filtro limpio
       filterProducts();
     });
   }
-  /* ===== Lógica para cerrar menús al hacer clic fuera ===== */
+
   document.addEventListener('click', (e) => {
-    // Cierra menú hamburguesa
     if (nav && nav.classList.contains('open') && !header.contains(e.target)) {
       nav.classList.remove('open');
       toggleBtn?.setAttribute('aria-expanded', 'false');
     }
-    // Cierra popover de perfil
     if (popover && popover.classList.contains('open') && !popover.contains(e.target) && e.target !== perfilBtn) {
       popover.classList.remove('open');
       perfilBtn.setAttribute('aria-expanded', 'false');
     }
-    // Cierra dropdowns de filtros
     document.querySelectorAll('.dropdown-menu.open').forEach(openMenu => {
       if (!openMenu.parentElement.contains(e.target)) {
         openMenu.classList.remove('open');
@@ -166,7 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-/* ====== LÓGICA PARA EL MODAL DE TÉRMINOS Y CONDICIONES ====== */
 const termsLink = document.getElementById('terms-link');
 const termsModal = document.getElementById('terms-modal');
 const termsOverlay = document.getElementById('terms-overlay');
@@ -183,20 +160,16 @@ const closeModal = () => {
 };
 
 if (termsLink && termsModal && termsOverlay && closeModalBtn) {
-  // Abrir modal al hacer clic en el enlace
   termsLink.addEventListener('click', (e) => {
     e.preventDefault();
     openModal();
   });
 
-  // Cerrar modal con el botón de flecha
   closeModalBtn.addEventListener('click', closeModal);
 
-  // Cerrar modal al hacer clic en el fondo oscuro
   termsOverlay.addEventListener('click', closeModal);
 }
 
-/* ====== LÓGICA PARA EL MODAL DE POLÍTICA DE PRIVACIDAD ====== */
 const privacyLink = document.getElementById('privacy-link');
 const privacyModal = document.getElementById('privacy-modal');
 const privacyOverlay = document.getElementById('privacy-overlay');
@@ -213,15 +186,12 @@ const closePrivacyModal = () => {
 };
 
 if (privacyLink && privacyModal && privacyOverlay && closePrivacyBtn) {
-  // Abrir modal al hacer clic en el enlace
   privacyLink.addEventListener('click', (e) => {
     e.preventDefault();
     openPrivacyModal();
   });
 
-  // Cerrar modal con el botón de flecha
   closePrivacyBtn.addEventListener('click', closePrivacyModal);
 
-  // Cerrar modal al hacer clic en el fondo oscuro
   privacyOverlay.addEventListener('click', closePrivacyModal);
 }

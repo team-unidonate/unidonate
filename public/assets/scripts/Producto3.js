@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  /* ===== Menú hamburguesa ===== */
   const header = document.querySelector('header');
   const nav = header?.querySelector('nav');
   const toggleBtn = header?.querySelector('.menu-toggle');
@@ -12,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== Popover Perfil ===== */
   const perfilBtn = document.getElementById('perfilBtn');
   const popover = document.getElementById('perfilPopover');
 
@@ -43,69 +41,52 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== ✨ INICIO DE LA NUEVA SECCIÓN: Lógica del Modal de Reporte ✨ ===== */
   const reportBtn = document.getElementById('report-btn');
   const reportModal = document.getElementById('report-modal');
   const overlay = document.getElementById('report-overlay');
   const reportForm = document.getElementById('report-form');
 
-  // Función para abrir el modal de reporte
   const openReportModal = () => {
     reportModal.classList.add('visible');
     overlay.classList.add('visible');
   };
 
-  // Función para cerrar el modal de reporte
   const closeReportModal = () => {
     reportModal.classList.remove('visible');
     overlay.classList.remove('visible');
   };
 
   if (reportBtn && reportModal && overlay && reportForm) {
-    // Abrir el modal al hacer clic en "REPORTAR"
     reportBtn.addEventListener('click', openReportModal);
-
-    // Cerrar el modal al hacer clic en el fondo oscuro
     overlay.addEventListener('click', closeReportModal);
-
-    // Manejar el envío del formulario de reporte
     reportForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const reason = document.getElementById('report-reason').value;
       if (reason.trim() !== '') {
         alert('Reporte enviado. Gracias por tu feedback.');
         closeReportModal();
-        reportForm.reset(); // Limpia el textarea después de enviar
+        reportForm.reset();
       } else {
         alert('Por favor, escribe un motivo para el reporte.');
       }
     });
   }
-  /* ===== ✨ FIN DE LA NUEVA SECCIÓN ✨ ===== */
 
-
-  /* ===== Lógica para cerrar menús al hacer clic fuera ===== */
   document.addEventListener('click', (e) => {
-    // Cierra el menú de hamburguesa
     if (nav && nav.classList.contains('open') && !header.contains(e.target)) {
       nav.classList.remove('open');
       toggleBtn.setAttribute('aria-expanded', 'false');
     }
-    // Cierra el popover de perfil
     if (popover && popover.classList.contains('open') && !popover.contains(e.target) && e.target !== perfilBtn) {
       closePopover();
     }
-    // No es necesario añadir lógica para el modal de reporte aquí, ya que el overlay lo maneja.
   });
   
-  /* ===== Cierra pop-ups con la tecla Escape (ACTUALIZADO) ===== */
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') { 
-      // Cierra el popover de perfil si está abierto
       if (popover && popover.classList.contains('open')) { 
         closePopover(); 
       }
-      // Cierra el modal de reporte si está abierto
       if (reportModal && reportModal.classList.contains('visible')) {
         closeReportModal();
       }
@@ -113,7 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-/* ====== LÓGICA PARA EL MODAL DE TÉRMINOS Y CONDICIONES ====== */
 const termsLink = document.getElementById('terms-link');
 const termsModal = document.getElementById('terms-modal');
 const termsOverlay = document.getElementById('terms-overlay');
@@ -130,20 +110,16 @@ const closeModal = () => {
 };
 
 if (termsLink && termsModal && termsOverlay && closeModalBtn) {
-  // Abrir modal al hacer clic en el enlace
   termsLink.addEventListener('click', (e) => {
     e.preventDefault();
     openModal();
   });
 
-  // Cerrar modal con el botón de flecha
   closeModalBtn.addEventListener('click', closeModal);
 
-  // Cerrar modal al hacer clic en el fondo oscuro
   termsOverlay.addEventListener('click', closeModal);
 }
 
-/* ====== LÓGICA PARA EL MODAL DE POLÍTICA DE PRIVACIDAD ====== */
 const privacyLink = document.getElementById('privacy-link');
 const privacyModal = document.getElementById('privacy-modal');
 const privacyOverlay = document.getElementById('privacy-overlay');
@@ -160,39 +136,29 @@ const closePrivacyModal = () => {
 };
 
 if (privacyLink && privacyModal && privacyOverlay && closePrivacyBtn) {
-  // Abrir modal al hacer clic en el enlace
   privacyLink.addEventListener('click', (e) => {
     e.preventDefault();
     openPrivacyModal();
   });
 
-  // Cerrar modal con el botón de flecha
   closePrivacyBtn.addEventListener('click', closePrivacyModal);
 
-  // Cerrar modal al hacer clic en el fondo oscuro
   privacyOverlay.addEventListener('click', closePrivacyModal);
 }
 
-/* ===========================================================
-     LÓGICA DEL BOTÓN LIKE (US29)
-     =========================================================== */
   const likeBtn = document.getElementById('like-btn');
 
   if (likeBtn) {
-    // Revisar si ya le dio like antes (Opcional: persistencia simple)
     const isLiked = localStorage.getItem('product_1_liked') === 'true';
     if (isLiked) {
       likeBtn.classList.add('liked');
     }
 
     likeBtn.addEventListener('click', () => {
-      // Alternar clase visual
       likeBtn.classList.toggle('liked');
-      
-      // Guardar estado y dar feedback
+
       if (likeBtn.classList.contains('liked')) {
         localStorage.setItem('product_1_liked', 'true');
-        // Opcional: Pequeña animación o mensaje
         console.log("👍 Like agregado");
       } else {
         localStorage.setItem('product_1_liked', 'false');
@@ -201,9 +167,6 @@ if (privacyLink && privacyModal && privacyOverlay && closePrivacyBtn) {
     });
   }
 
-  /* ===========================================================
-     LÓGICA: MODAL DE PERFIL DE USUARIO (US20)
-     =========================================================== */
   const publisherLink = document.getElementById('publisher-trigger');
   const userModal = document.getElementById('user-profile-modal');
   const userOverlay = document.getElementById('user-profile-overlay');
@@ -211,14 +174,12 @@ if (privacyLink && privacyModal && privacyOverlay && closePrivacyBtn) {
 
   if (publisherLink && userModal && userOverlay) {
     
-    // Abrir modal
     publisherLink.addEventListener('click', (e) => {
       e.preventDefault();
       userModal.classList.add('visible');
       userOverlay.classList.add('visible');
     });
 
-    // Cerrar modal
     const closeUserModal = () => {
       userModal.classList.remove('visible');
       userOverlay.classList.remove('visible');

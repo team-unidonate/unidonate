@@ -1,15 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
   
-  /* ===========================================================
-     1. LÓGICA DEL HEADER (Menú hamburguesa y Popover)
-     =========================================================== */
   const header = document.querySelector('header');
   const nav = header?.querySelector('nav');
   const toggleBtn = header?.querySelector('.menu-toggle');
   const perfilBtn = document.getElementById('perfilBtn');
   const popover = document.getElementById('perfilPopover');
 
-  // Menú Hamburguesa (Móvil)
   if (toggleBtn && nav) {
     toggleBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -18,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Popover de Perfil
   if (perfilBtn && popover) {
     const openPopover = () => {
       const rect = perfilBtn.getBoundingClientRect();
@@ -42,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Cerrar menús al hacer clic fuera
   document.addEventListener('click', (e) => {
     if (nav && nav.classList.contains('open') && !header.contains(e.target)) {
       nav.classList.remove('open');
@@ -54,11 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  /* ===========================================================
-     2. LÓGICA DE EDICIÓN DE PUBLICACIÓN (US26)
-     =========================================================== */
-  
-  // A) Vista previa de la imagen al seleccionarla
   const imageInput = document.getElementById('image-upload');
   const previewImg = document.getElementById('edit-preview-img');
 
@@ -75,49 +64,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // B) Guardar Cambios
   const editForm = document.getElementById('edit-form');
   const editNombre = document.getElementById('edit-nombre');
 
   if (editForm) {
     editForm.addEventListener('submit', (e) => {
-      e.preventDefault(); // Evita que la página se recargue
+      e.preventDefault();
 
-      // Validación simple: Que al menos tenga nombre
       if (editNombre && editNombre.value.trim() === "") {
         alert("⚠️ Por favor, ingresa al menos el nombre del producto.");
         return;
       }
 
-      // Simulación de éxito
       alert("✅ ¡Publicación actualizada correctamente!");
       
-      // Redirección al perfil para ver los cambios
       window.location.href = "Profile.html";
     });
   }
 
-  /* ===========================================================
-     3. LÓGICA DE ELIMINACIÓN (US23) - ¡NUEVO!
-     =========================================================== */
   const btnDelete = document.getElementById('btn-delete-pub');
 
   if (btnDelete) {
     btnDelete.addEventListener('click', () => {
-      // Confirmación de seguridad
       const confirmacion = confirm("⚠️ ¿Estás seguro de que deseas ELIMINAR esta publicación?\n\nEsta acción no se puede deshacer.");
       
       if (confirmacion) {
         alert("🗑️ Publicación eliminada exitosamente.");
-        // Redirección al perfil donde ya no debería aparecer el objeto
         window.location.href = "Profile.html";
       }
     });
   }
 
-  /* ===========================================================
-     4. MODALES DEL FOOTER (Legal)
-     =========================================================== */
   const setupModal = (triggerId, modalId, overlayId, closeBtnId) => {
     const trigger = document.getElementById(triggerId);
     const modal = document.getElementById(modalId);

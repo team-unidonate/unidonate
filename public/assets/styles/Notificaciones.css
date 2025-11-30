@@ -1,4 +1,3 @@
-/* ===== Reset / Vars (ESTILO UNIFICADO) ===== */
 *{ box-sizing:border-box }
 html,body{ margin:0; padding:0 }
 :root{
@@ -9,7 +8,6 @@ html,body{ margin:0; padding:0 }
 body{ font-family:system-ui,-apple-system,sans-serif; color:var(--ink); line-height:1.45; background-color: #F0FDF4; }
 a, button { color:inherit; text-decoration:none }
 
-/* ===== Componentes Globales ===== */
 .btn { display: inline-block; padding: 10px 20px; border-radius: 10px; font-weight: 600; cursor: pointer; border: none; text-align: center; transition: all 0.2s; }
 .btn--primary { background-color:var(--primary); color:#fff; }
 .btn--secondary { background-color: var(--bg); color: var(--ink); border: 1px solid var(--line); }
@@ -17,7 +15,6 @@ a, button { color:inherit; text-decoration:none }
 .btn--outline:hover { background-color: #f0fdf4; }
 .btn--small { padding: 8px 16px; font-size: 14px; }
 
-/* ===== Header y Popover (ESTILO UNIFICADO) ===== */
 header{ position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:10px 18px; background:rgba(255,255,255,.92); backdrop-filter:saturate(180%) blur(10px); border-bottom:1px solid var(--line); }
 .Logo{ height:64px; }
 header nav{ display:flex; gap:16px; font-weight:600; }
@@ -36,10 +33,10 @@ header nav .Perfil.active, .Perfil:hover{ background: #1aad6b;}
 .profile-popover__list a:hover{ background:#f8fafc; }
 .profile-popover__list a.active-profile-link { color: var(--primary-strong); font-weight: 600; }
 .btn-logout {
-  display: block; /* Le decimos que ocupe su propia línea */
-  width: 80%; /* Mantenemos el ancho que definiste */
-  margin-left: auto; /* Margen automático a la izquierda */
-  margin-right: auto; /* Margen automático a la derecha */
+  display: block;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
   padding: 10px 12px;
   border-radius: 10px;
   border: 0;
@@ -47,11 +44,10 @@ header nav .Perfil.active, .Perfil:hover{ background: #1aad6b;}
   color: #fff;
   font-weight: 700;
   cursor: pointer;
-  text-align: center; /* Asegura que el texto dentro del botón esté centrado */
+  text-align: center;
 }
 .btn-logout:hover{ background:var(--primary-strong); }
 
-/* ===== Página de Notificaciones ===== */
 .notifications-header { padding: 24px; background: linear-gradient(100deg, #d1fae5 0%, #A2CFFE 100%); }
 .notifications-header__wrapper { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
 .notifications-header h1 { font-size: 32px; margin: 0 0 4px; }
@@ -59,7 +55,6 @@ header nav .Perfil.active, .Perfil:hover{ background: #1aad6b;}
 .header-actions { display: flex; gap: 12px; }
 .notifications-body { max-width: 1000px; margin: 32px auto 0; background-color: var(--bg); border-radius: var(--radius); padding: 32px 24px; box-shadow: var(--shadow); }
 
-/* Barra de Filtros */
 .filter-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 20px; }
 .filter-tabs { display: flex; gap: 10px; }
 .tab-btn { background-color: var(--bg); color: var(--muted); border: 1px solid var(--line); padding: 8px 16px; border-radius: 10px; font-weight: 600; cursor: pointer; }
@@ -68,7 +63,6 @@ header nav .Perfil.active, .Perfil:hover{ background: #1aad6b;}
 .search-input { padding: 10px 16px; border: 1px solid var(--line); border-radius: 10px; width: 220px; }
 .unread-toggle { display: flex; align-items: center; gap: 8px; color: var(--muted); cursor: pointer; }
 
-/* Lista de Notificaciones */
 .notification-list { display: flex; flex-direction: column; gap: 16px; }
 .notification-item { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--line); flex-wrap: wrap; gap: 16px; }
 .notification-item:last-child { border-bottom: none; }
@@ -80,7 +74,6 @@ header nav .Perfil.active, .Perfil:hover{ background: #1aad6b;}
 .notification-item.is-read { opacity: 0.6; }
 .notification-item.is-read .btn-mark-read { background-color: #f1f5f9; color: var(--muted); cursor: default; border-color: var(--line); }
 
-/* ===== Footer y Modals ===== */
 footer{ display:grid; grid-template-columns:auto 1fr 1fr 1fr; grid-template-areas: "logo links1 links2 links3" "desc links1 links2 links3" "line line   line   line" "copy copy   copy   copy"; gap:16px 28px; padding:20px 18px; background:#fff; color:#8F8C8C; margin-top:20px; }
 footer > img{ grid-area:logo; height:64px; }
 footer > span{ grid-area:desc; max-width:380px }
@@ -102,15 +95,10 @@ footer small{ grid-area:copy; text-align:center }
 .modal-content h4:first-child { margin-top: 0; }
 .modal-content ul { padding-left: 20px; }
 
-/* Lógica de Visibilidad para Filtros */
 .notification-item.hidden {
   display: none;
 }
 
-
-/* ===== Fragmento: Estilos para Toggle y Eliminar ===== */
-
-/* Botón de Eliminar (Basura) */
 .btn-delete-notif {
   background: none;
   border: none;
@@ -125,7 +113,6 @@ footer small{ grid-area:copy; text-align:center }
   transform: scale(1.1);
 }
 
-/* Interruptor (Toggle Switch) US40 */
 .toggle-switch {
   position: relative;
   display: inline-block;
@@ -157,15 +144,14 @@ footer small{ grid-area:copy; text-align:center }
   transition: .4s;
   border-radius: 50%;
 }
-/* Cuando está activado (Checked) */
+
 input:checked + .slider {
-  background-color: var(--primary); /* Tu verde #66D575 */
+  background-color: var(--primary);
 }
 input:checked + .slider:before {
   transform: translateX(24px);
 }
 
-/* ===== Responsive ===== */
 @media (max-width: 860px) {
   .menu-toggle { display:inline-block; }
   header nav { display:none; position:absolute; right:18px; top:calc(100% + 8px); z-index: 60; flex-direction: column; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 12px; box-shadow: var(--shadow); gap: 8px; min-width: 220px; }
