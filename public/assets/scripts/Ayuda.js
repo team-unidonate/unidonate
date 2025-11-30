@@ -53,57 +53,112 @@ document.addEventListener('DOMContentLoaded', () => {
   const messageInput = document.getElementById('message-input');
 
   if (messageList && messageForm && messageInput) {
-    const botResponses = {
-      "hola": "¡Hola! Soy tu asistente de UniDonate. ¿Cómo puedo ayudarte? Puedes preguntarme sobre 'publicar', 'solicitar' o 'contraseña'.",
-      "publicar": "Para publicar una donación, ve a la sección 'Publicar', completa el formulario con los detalles del artículo, sube una foto y haz clic en 'Publicar'. ¡Es así de fácil!",
-      "solicitar": "Para solicitar un artículo, navega por la sección 'Explorar'. Cuando encuentres algo que te interese, haz clic en 'Ver detalles' y luego en 'Solicitar y chatear' para contactar al donante.",
-      "contraseña": "Puedes cambiar tu contraseña en la sección 'Perfil'. Busca la opción de seguridad o configuración de la cuenta.",
-      "gracias": "¡De nada! Si tienes otra pregunta, no dudes en consultarme.",
-      "default": "Lo siento, no he entendido tu pregunta. Por favor, intenta reformularla. Puedes preguntarme sobre 'publicar', 'solicitar' o 'contraseña'."
+  const addMessage = (sender, content) => {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('message', `message--${sender}`);
+
+    let bubbleContent = '';
+    if (sender === 'bot' || sender === 'typing') {
+      bubbleContent += `
+        <div class="message__avatar">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10
+                     10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8
+                     s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-9h4v2h-4v-2zm-2 4h8v2H8v-2z">
+            </path>
+          </svg>
+        </div>`;
+    }
+
+    bubbleContent += `<div class="message__bubble">${content}</div>`;
+    messageDiv.innerHTML = bubbleContent;
+
+    if (sender === 'typing') {
+      messageDiv.id = 'typing-indicator';
+      messageDiv.classList.add('message--typing');
+    }
+
+    messageList.appendChild(messageDiv);
+    messageList.scrollTop = messageList.scrollHeight;
+  };
+
+  // 🔹 Llamada a Gemini por fetch
+  async function getBotResponse(userInput) {
+    const apiKey = "AIzaSyCF0zd-Y7aF4wn7ppMNsJsdcUxphviEQnI"; // <-- pega tu clave nueva AQUÍ
+
+    const url = `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+
+    const body = {
+      contents: [
+        {
+          role: "user",
+          parts: [
+            {
+              text:
+                "Actúa como asistente de la plataforma UniDonate. " +
+                "Responde de forma corta, clara y en español. " +
+                "Pregunta del usuario: " + userInput
+            }
+          ]
+        }
+      ]
     };
 
-    const addMessage = (sender, content) => {
-      const messageDiv = document.createElement('div');
-      messageDiv.classList.add('message', `message--${sender}`);
-      let bubbleContent = '';
-      if (sender === 'bot' || sender === 'typing') {
-        bubbleContent += `<div class="message__avatar"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-9h4v2h-4v-2zm-2 4h8v2H8v-2z"></path></svg></div>`;
-      }
-      bubbleContent += `<div class="message__bubble">${content}</div>`;
-      messageDiv.innerHTML = bubbleContent;
-      if (sender === 'typing') {
-        messageDiv.id = 'typing-indicator';
-        messageDiv.classList.add('message--typing');
-      }
-      messageList.appendChild(messageDiv);
-      messageList.scrollTop = messageList.scrollHeight;
-    };
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
 
-    const getBotResponse = (userInput) => {
-      const text = userInput.toLowerCase();
-      for (const key in botResponses) {
-        if (text.includes(key)) { return botResponses[key]; }
+      if (!res.ok) {
+        console.error("Error HTTP Gemini:", res.status, await res.text());
+        return "Ocurrió un error al conectar con el servicio de IA.";
       }
-      return botResponses.default;
-    };
 
-    messageForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const userInput = messageInput.value.trim();
-      if (userInput === '') return;
-      addMessage('user', `<p>${userInput}</p>`);
-      messageInput.value = '';
-      const typingIndicatorContent = `<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>`;
-      addMessage('typing', typingIndicatorContent);
-      setTimeout(() => {
-        const typingIndicator = document.getElementById('typing-indicator');
-        if (typingIndicator) typingIndicator.remove();
-        const response = getBotResponse(userInput);
-        addMessage('bot', `<p>${response}</p>`);
-      }, 1500);
-    });
+      const data = await res.json();
 
-    setTimeout(() => { addMessage('bot', `<p>¡Hola! Soy tu asistente virtual. Escribe tus dudas para que pueda ayudarte.</p>`); }, 500);
+      const parts = data.candidates?.[0]?.content?.parts || [];
+      const text =
+        parts.map((p) => p.text || "").join(" ").trim() ||
+        "No entendí, ¿puedes repetirlo?";
+
+      return text;
+    } catch (e) {
+      console.error("Error fetch Gemini:", e);
+      return "Hubo un error al conectarme con Gemini.";
+    }
+  }
+
+  // 🔹 Envío del formulario
+  messageForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const userInput = messageInput.value.trim();
+    if (userInput === '') return;
+
+    // Mensaje del usuario
+    addMessage('user', `<p>${userInput}</p>`);
+    messageInput.value = '';
+
+    // Indicador "escribiendo..."
+    addMessage(
+      'typing',
+      `<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>`
+    );
+
+    // Llamar a Gemini
+    const botReply = await getBotResponse(userInput);
+
+    const typingIndicator = document.getElementById('typing-indicator');
+    if (typingIndicator) typingIndicator.remove();
+
+    addMessage('bot', `<p>${botReply}</p>`);
+  });
+
+  // Mensaje inicial del bot
+  setTimeout(() => {
+    addMessage('bot', `<p>¡Hola! Soy tu asistente virtual. Escribe tus dudas para que pueda ayudarte.</p>`);
+  }, 500);
   }
 
   const termsLink = document.getElementById('terms-link');
