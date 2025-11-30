@@ -1,24 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
-  /* ========= Menú hamburguesa (NUEVA VERSIÓN) ========= */
   const header = document.querySelector('header');
   const nav = header?.querySelector('nav');
   const toggleBtn = header?.querySelector('.menu-toggle');
 
   if (toggleBtn && nav) {
-    // 1. Abrir/cerrar al hacer click en el botón
     toggleBtn.addEventListener('click', (e) => {
-      e.stopPropagation(); // Evita que el click se propague al documento
+      e.stopPropagation();
       const isOpen = nav.classList.toggle('open');
       toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
 
-    // 2. Cerrar al hacer click en un enlace del menú
     nav.addEventListener('click', (e) => {
         nav.classList.remove('open');
         toggleBtn.setAttribute('aria-expanded', 'false');
     });
 
-    // 3. Cerrar al hacer click fuera del menú
     document.addEventListener('click', (e) => {
       if (nav.classList.contains('open') && !nav.contains(e.target) && !toggleBtn.contains(e.target)) {
         nav.classList.remove('open');
@@ -27,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ========= Dropdown Sede (sin cambios) ========= */
   const dd = document.querySelector('.dropdown');
   if (dd) {
     const btn   = dd.querySelector('.btn-drop');
@@ -58,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-/* ====== LÓGICA PARA EL MODAL DE TÉRMINOS Y CONDICIONES ====== */
+
 const termsLink = document.getElementById('terms-link');
 const termsModal = document.getElementById('terms-modal');
 const termsOverlay = document.getElementById('terms-overlay');
@@ -75,20 +70,16 @@ const closeModal = () => {
 };
 
 if (termsLink && termsModal && termsOverlay && closeModalBtn) {
-  // Abrir modal al hacer clic en el enlace
   termsLink.addEventListener('click', (e) => {
     e.preventDefault();
     openModal();
   });
 
-  // Cerrar modal con el botón de flecha
   closeModalBtn.addEventListener('click', closeModal);
 
-  // Cerrar modal al hacer clic en el fondo oscuro
   termsOverlay.addEventListener('click', closeModal);
 }
 
-/* ====== LÓGICA PARA EL MODAL DE POLÍTICA DE PRIVACIDAD ====== */
 const privacyLink = document.getElementById('privacy-link');
 const privacyModal = document.getElementById('privacy-modal');
 const privacyOverlay = document.getElementById('privacy-overlay');
@@ -105,22 +96,16 @@ const closePrivacyModal = () => {
 };
 
 if (privacyLink && privacyModal && privacyOverlay && closePrivacyBtn) {
-  // Abrir modal al hacer clic en el enlace
   privacyLink.addEventListener('click', (e) => {
     e.preventDefault();
     openPrivacyModal();
   });
 
-  // Cerrar modal con el botón de flecha
   closePrivacyBtn.addEventListener('click', closePrivacyModal);
 
-  // Cerrar modal al hacer clic en el fondo oscuro
   privacyOverlay.addEventListener('click', closePrivacyModal);
 }
 
-/* ===========================================================
-     LOGICA DE REGISTRO Y VALIDACIÓN 
-     =========================================================== */
   const btnRegister = document.getElementById('btn-register');
   const inputName = document.getElementById('name-input');
   const inputEmail = document.getElementById('email-input');
@@ -136,30 +121,23 @@ if (privacyLink && privacyModal && privacyOverlay && closePrivacyBtn) {
       const pass = inputPass.value.trim();
       const sede = sedeValue.textContent.trim();
 
-      // 1. Validación de campos vacíos
       if (!nombre || !correo || !pass) {
         alert("⚠️ Por favor, completa todos los campos.");
         return;
       }
 
-      // 2. Validación de Correo Institucional (US08)
-      // Verificamos que termine en @universidad.edu.pe 
-      // Puedes ajustar el dominio según lo que necesites probar
       if (!correo.endsWith('@universidad.edu.pe') && !correo.endsWith('@upc.edu.pe')) {
         alert("⛔ Error: Debes usar un correo institucional válido (ej: @universidad.edu.pe).");
         return;
       }
 
-      // 3. Validación de Contraseña (mínimo 6 caracteres por seguridad básica)
       if (pass.length < 4) {
         alert("⚠️ La contraseña es muy corta.");
         return;
       }
 
-      // 4. Éxito y Redirección 
       alert(`¡Cuenta creada con éxito, ${nombre}!\n\nSede registrada: ${sede}\nAhora puedes iniciar sesión.`);
       
-      // Redirige al Login para que el usuario entre con su nueva cuenta
       window.location.href = "Login.html"; 
     });
   }

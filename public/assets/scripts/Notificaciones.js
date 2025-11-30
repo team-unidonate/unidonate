@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  /* ===== Lógica del Header (Menú hamburguesa y Popover de Perfil) ===== */
   const header = document.querySelector('header');
   const nav = header?.querySelector('nav');
   const toggleBtn = header?.querySelector('.menu-toggle');
@@ -24,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== Lógica de la Página de Notificaciones (con Filtros) ===== */
   const filterTabs = document.querySelectorAll('.tab-btn');
   const unreadFilter = document.getElementById('unread-filter');
   const notificationItems = document.querySelectorAll('.notification-item');
@@ -73,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== Lógica para cerrar menús al hacer clic fuera ===== */
   document.addEventListener('click', (e) => {
     if (nav && nav.classList.contains('open') && !header.contains(e.target)) {
       nav.classList.remove('open');
@@ -84,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  /* ===== Lógica de Modals del Footer ===== */
   const termsLink = document.getElementById('terms-link');
   const termsModal = document.getElementById('terms-modal');
   const termsOverlay = document.getElementById('terms-overlay');
@@ -112,30 +108,24 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-
-/* ===== Lógica de Acciones de Notificaciones (US37 y US33) ===== */
   const notificationListContainer = document.querySelector('.notification-list');
 
   if(notificationListContainer) {
     notificationListContainer.addEventListener('click', (e) => {
       
-      // 1. Eliminar notificación individual
       if (e.target.closest('.btn-delete-notif')) {
         const item = e.target.closest('.notification-item');
-        // Animación visual antes de borrar
         item.style.transition = "all 0.3s ease";
         item.style.opacity = "0";
         item.style.transform = "translateX(20px)";
         
         setTimeout(() => {
           item.remove();
-          // Si no quedan notificaciones, podrías mostrar un mensaje de "Vacío"
         }, 300);
       }
     });
   }
 
-  // 2. Marcar TODAS como leídas
   const btnMarkAll = document.getElementById('mark-all-read');
   if (btnMarkAll) {
     btnMarkAll.addEventListener('click', () => {
@@ -148,8 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-
-  /* ===== Lógica de Preferencias (US40) ===== */
   const toggle = document.getElementById('notif-toggle');
   
   if (toggle) {

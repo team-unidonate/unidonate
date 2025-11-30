@@ -1,4 +1,3 @@
-/* ===== Reset / Vars (ESTILO UNIFICADO) ===== */
 *{ box-sizing:border-box }
 html,body{ margin:0; padding:0 }
 :root{
@@ -8,7 +7,6 @@ html,body{ margin:0; padding:0 }
 body{ font-family:system-ui,-apple-system,sans-serif; color:var(--ink); line-height:1.45; }
 a{ color:inherit; text-decoration:none }
 
-/* ===== Header y Popover (ESTILO UNIFICADO) ===== */
 header{ position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:10px 18px; background:rgba(255,255,255,.92); backdrop-filter:saturate(180%) blur(10px); border-bottom:1px solid var(--line); }
 .Logo{ height:64px; }
 header nav{ display:flex; gap:16px; font-weight:600; }
@@ -26,10 +24,10 @@ header nav .Perfil:hover{ background:var(--primary-strong); }
 .profile-list{ list-style:none; padding:0; margin:10px 0 12px; }
 .profile-list a{ display:block; padding:10px; border-radius:10px; }
 .btn-logout {
-  display: block; /* Le decimos que ocupe su propia línea */
-  width: 80%; /* Mantenemos el ancho que definiste */
-  margin-left: auto; /* Margen automático a la izquierda */
-  margin-right: auto; /* Margen automático a la derecha */
+  display: block;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
   padding: 10px 12px;
   border-radius: 10px;
   border: 0;
@@ -37,17 +35,16 @@ header nav .Perfil:hover{ background:var(--primary-strong); }
   color: #fff;
   font-weight: 700;
   cursor: pointer;
-  text-align: center; /* Asegura que el texto dentro del botón esté centrado */
+  text-align: center;
 }
 
-/* ===== Página de Publicar ===== */
 .publish-page {
   padding: 40px 24px;
   background: linear-gradient(160deg, #d1fae5 0%, #fef3c7 100%);
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  min-height: calc(100vh - 85px); /* Altura de la ventana menos el header */
+  min-height: calc(100vh - 85px);
 }
 .publish-form {
   width: 100%;
@@ -62,11 +59,11 @@ header nav .Perfil:hover{ background:var(--primary-strong); }
 .form-group {
   margin-bottom: 24px;
 }
-/* ✨ INICIO DE LA CORRECCIÓN ✨ */
+
 .dropdown-container {
-  position: relative; /* Esta línea es la clave para que el pop-up se posicione correctamente */
+  position: relative;
 }
-/* ✨ FIN DE LA CORRECCIÓN ✨ */
+
 .form-group label, .dropdown-container > label {
   display: block;
   font-weight: 600;
@@ -92,18 +89,13 @@ header nav .Perfil:hover{ background:var(--primary-strong); }
   gap: 20px;
 }
 
-
-/* ===== ESTILOS PARA LOS BOTONES FINALES ===== */
-
-/* 1. Modifica el contenedor para que alinee los dos botones */
 .form-actions {
-  display: flex; /* Pone los botones uno al lado del otro */
-  justify-content: center; /* Los centra en la página */
-  gap: 16px; /* Añade un espacio entre ellos */
+  display: flex;
+  justify-content: center;
+  gap: 16px;
   margin-top: 32px;
 }
 
-/* 2. Unifica los estilos de los botones */
 .btn-publish, .btn-cancel {
   border: none;
   padding: 16px 48px;
@@ -114,13 +106,11 @@ header nav .Perfil:hover{ background:var(--primary-strong); }
   transition: filter 0.2s;
 }
 
-/* 3. Estilo específico para el nuevo botón "Volver" */
 .btn-cancel {
-  background-color: #A2CFFE; /* Azul claro de la imagen */
-  color: #fff; /* Texto blanco */
+  background-color: #A2CFFE;
+  color: #fff;
 }
 
-/* Efecto hover para ambos botones */
 .btn-publish:hover, .btn-cancel:hover {
   filter: brightness(0.9);
 }
@@ -134,13 +124,11 @@ header nav .Perfil:hover{ background:var(--primary-strong); }
 .dropdown-menu a { display: block; padding: 10px 12px; border-radius: 8px; }
 .dropdown-menu a:hover { background: #f1f5f9; }
 
-/* Área de Subida de Archivos */
 .file-upload-area { display: flex; align-items: center; gap: 16px; }
 .file-upload-button { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; font-weight: 600; cursor: pointer; }
 .file-upload-button .icon { width: 20px; height: 20px; }
 .file-info { color: var(--muted); }
 
-/* Botón de Publicar */
 .form-actions { text-align: center; margin-top: 32px; }
 .btn-publish { background: var(--primary); color: var(--bg); border: none; padding: 16px 48px; font-size: 18px; font-weight: 700; border-radius: 12px; cursor: pointer; transition: background-color 0.2s; }
 .btn-publish:hover { background: var(--primary-strong); }
@@ -167,7 +155,6 @@ footer article a:hover{ text-decoration:underline }
 footer hr{ grid-area:line; border:none; border-top:1px solid #66D575; margin:8px 0 10px }
 footer small{ grid-area:copy; color:#8F8C8C; text-align:center }
 
-/* ====== Modal de Términos y Condiciones ====== */
 .overlay {
   position: fixed;
   top: 0;
@@ -179,13 +166,12 @@ footer small{ grid-area:copy; color:#8F8C8C; text-align:center }
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease;
-  /* ✨ CORRECCIÓN CLAVE: Permite hacer clic a través del overlay cuando está oculto ✨ */
   pointer-events: none;
 }
 .overlay.visible {
   opacity: 1;
   visibility: visible;
-  pointer-events: auto; /* Reactiva los clics cuando está visible */
+  pointer-events: auto;
 }
 
 .modal {
@@ -200,11 +186,11 @@ footer small{ grid-area:copy; color:#8F8C8C; text-align:center }
   flex-direction: column;
   transform: translateY(100%);
   transition: transform 0.4s ease-out;
-  pointer-events: none; /* También ignora clics cuando está oculto */
+  pointer-events: none;
 }
 .modal.visible {
   transform: translateY(0);
-  pointer-events: auto; /* Reactiva los clics cuando está visible */
+  pointer-events: auto;
 }
 
 .modal-header {
@@ -229,8 +215,6 @@ footer small{ grid-area:copy; color:#8F8C8C; text-align:center }
 .modal-content h4:first-child { margin-top: 0; }
 .modal-content ul { padding-left: 20px; margin: 0 0 16px; color: #000; }
 
-
-/* ===== Responsive ===== */
 @media (max-width: 860px){
   .menu-toggle{ display:inline-block }
   header nav{ display:none; position:absolute; right:18px; top:calc(100% + 8px); background:#fff; border:1px solid var(--line); border-radius:14px; padding:12px; box-shadow:var(--shadow); flex-direction:column; gap:8px; min-width:220px; z-index:60; }

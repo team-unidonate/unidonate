@@ -1,15 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
   
-  /* ===========================================================
-     1. LÓGICA COMÚN (Header, Menú, Popover, Modales)
-     =========================================================== */
   const header = document.querySelector('header');
   const nav = header?.querySelector('nav');
   const toggleBtn = header?.querySelector('.menu-toggle');
   const perfilBtn = document.getElementById('perfilBtn');
   const popover = document.getElementById('perfilPopover');
 
-  // Menú Hamburguesa
   if (toggleBtn && nav) {
     toggleBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -17,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Popover Perfil
   if (perfilBtn && popover) {
     const openPopover = () => {
       const rect = perfilBtn.getBoundingClientRect();
@@ -33,13 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Cerrar al clic fuera
   document.addEventListener('click', (e) => {
     if (nav && nav.classList.contains('open') && !header.contains(e.target)) nav.classList.remove('open');
     if (popover && popover.classList.contains('open') && !popover.contains(e.target) && e.target !== perfilBtn) popover.classList.remove('open');
   });
 
-  // Modales Footer
   const setupModal = (triggerId, modalId, overlayId, closeId) => {
     const trigger = document.getElementById(triggerId);
     const modal = document.getElementById(modalId);
@@ -55,10 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setupModal('terms-link', 'terms-modal', 'terms-overlay', 'modal-close-btn');
   setupModal('privacy-link', 'privacy-modal', 'privacy-overlay', 'privacy-modal-close-btn');
 
-
-  /* ===========================================================
-     2. LÓGICA DEL FORMULARIO DE FEEDBACK
-     =========================================================== */
   const feedbackForm = document.getElementById('feedback-form');
   const feedbackText = document.getElementById('feedback-text');
 
@@ -71,45 +60,35 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Simulación de envío
       alert("✅ ¡Gracias por tu feedback!\nTu opinión nos ayuda a mejorar la comunidad.");
       
-      // Redirigir (ej: al historial o home)
       window.location.href = "Notificaciones.html";
     });
   }
 });
 
 
-/* ===========================================================
-     2. LÓGICA DE FEEDBACK Y ESTRELLAS
-     =========================================================== */
   const feedbackForm = document.getElementById('feedback-form');
   const feedbackText = document.getElementById('feedback-text');
   
-  // Elementos de estrellas
   const starsWrapper = document.getElementById('stars-wrapper');
   const stars = document.querySelectorAll('.star-btn');
   const ratingInput = document.getElementById('rating-value');
 
-  // Lógica de interacción con estrellas
   if (starsWrapper && stars.length > 0) {
     stars.forEach(star => {
-      // Al hacer clic en una estrella
       star.addEventListener('click', () => {
         const value = parseInt(star.dataset.value);
-        ratingInput.value = value; // Guardar valor en input oculto
+        ratingInput.value = value;
         updateStars(value);
       });
       
-      // (Opcional) Efecto hover visual simple
       star.addEventListener('mouseover', () => {
         const value = parseInt(star.dataset.value);
         updateStars(value);
       });
     });
 
-    // Al salir del contenedor, volver a la selección guardada
     starsWrapper.addEventListener('mouseleave', () => {
       const savedValue = parseInt(ratingInput.value);
       updateStars(savedValue);
@@ -119,15 +98,14 @@ document.addEventListener('DOMContentLoaded', () => {
       stars.forEach(s => {
         const sVal = parseInt(s.dataset.value);
         if (sVal <= count) {
-          s.classList.add('active'); // Pinta de dorado
+          s.classList.add('active');
         } else {
-          s.classList.remove('active'); // Deja en gris
+          s.classList.remove('active');
         }
       });
     }
   }
 
-  // Envío del formulario
   if (feedbackForm) {
     feedbackForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -135,22 +113,18 @@ document.addEventListener('DOMContentLoaded', () => {
       const text = feedbackText.value.trim();
       const rating = parseInt(ratingInput.value);
 
-      // Validación 1: Texto vacío
       if (text === "") {
         alert("⚠️ Por favor, escribe tu opinión antes de enviar.");
         return;
       }
 
-      // Validación 2: Sin estrellas (Rating = 0)
       if (rating === 0) {
         alert("⭐ Por favor, selecciona una calificación de estrellas.");
         return;
       }
 
-      // Simulación de éxito
       alert(`✅ ¡Gracias por tu feedback!\n\nCalificación: ${rating} estrella(s)\nComentario enviado.`);
       
-      // Redirigir (al historial o home)
       window.location.href = "Historial.html";
     });
   }

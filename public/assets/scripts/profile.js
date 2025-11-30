@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  /* ===== Lógica del Header (Menú hamburguesa y Popover de Perfil) REUTILIZADO ===== */
   const header = document.querySelector('header');
   const nav = header?.querySelector('nav');
   const toggleBtn = header?.querySelector('.menu-toggle');
@@ -20,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== NUEVO: Lógica del Modal de Edición ===== */
   const editButton = document.getElementById('edit-button');
   const editFormContainer = document.getElementById('inline-edit-section');
   const overlay = document.getElementById('page-overlay');
@@ -51,12 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     editForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      // Aquí iría la lógica para guardar los datos en el servidor
       console.log('Datos guardados (simulación)');
       closeEditModal();
     });
 
-    // Vista previa de la imagen al seleccionarla
     fileUpload.addEventListener('change', () => {
       const file = fileUpload.files[0];
       if (file) {
@@ -69,14 +65,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== Lógica para cerrar menús al hacer clic fuera ===== */
   document.addEventListener('click', (e) => {
     if (nav && nav.classList.contains('open') && !header.contains(e.target)) nav.classList.remove('open');
     if (popover && popover.classList.contains('open') && !popover.contains(e.target) && e.target !== perfilBtn) popover.classList.remove('open');
   });
 });
 
-/* ====== LÓGICA PARA EL MODAL DE TÉRMINOS Y CONDICIONES ====== */
 const termsLink = document.getElementById('terms-link');
 const termsModal = document.getElementById('terms-modal');
 const termsOverlay = document.getElementById('terms-overlay');
@@ -93,20 +87,16 @@ const closeModal = () => {
 };
 
 if (termsLink && termsModal && termsOverlay && closeModalBtn) {
-  // Abrir modal al hacer clic en el enlace
   termsLink.addEventListener('click', (e) => {
     e.preventDefault();
     openModal();
   });
 
-  // Cerrar modal con el botón de flecha
   closeModalBtn.addEventListener('click', closeModal);
 
-  // Cerrar modal al hacer clic en el fondo oscuro
   termsOverlay.addEventListener('click', closeModal);
 }
 
-/* ====== LÓGICA PARA EL MODAL DE POLÍTICA DE PRIVACIDAD ====== */
 const privacyLink = document.getElementById('privacy-link');
 const privacyModal = document.getElementById('privacy-modal');
 const privacyOverlay = document.getElementById('privacy-overlay');
@@ -123,41 +113,30 @@ const closePrivacyModal = () => {
 };
 
 if (privacyLink && privacyModal && privacyOverlay && closePrivacyBtn) {
-  // Abrir modal al hacer clic en el enlace
   privacyLink.addEventListener('click', (e) => {
     e.preventDefault();
     openPrivacyModal();
   });
 
-  // Cerrar modal con el botón de flecha
   closePrivacyBtn.addEventListener('click', closePrivacyModal);
 
-  // Cerrar modal al hacer clic en el fondo oscuro
   privacyOverlay.addEventListener('click', closePrivacyModal);
 }
 
-/* ===========================================================
-     LÓGICA SISTEMA DE RECOMPENSAS (US27) CON FONDO OSCURO
-     =========================================================== */
   const btnReward = document.getElementById('btn-get-reward');
   const rewardPopup = document.getElementById('reward-popup');
-  const rewardOverlay = document.getElementById('reward-overlay'); // Nuevo elemento
+  const rewardOverlay = document.getElementById('reward-overlay');
 
   if (btnReward && rewardPopup && rewardOverlay) {
     btnReward.addEventListener('click', () => {
-      // 1. Mostrar el pop-up y el fondo oscuro
       rewardPopup.classList.add('show');
       rewardOverlay.classList.add('show');
 
-      // 2. Ocultar el botón temporalmente
       btnReward.style.display = 'none';
 
-      // 3. Esperar 3 segundos y cerrar todo
       setTimeout(() => {
         rewardPopup.classList.remove('show');
         rewardOverlay.classList.remove('show');
-        
-        // Actualizar estado del botón a "Reclamado"
         btnReward.style.display = 'block';
         btnReward.textContent = "Recompensa Reclamada";
         btnReward.style.backgroundColor = "#ccc";
@@ -166,35 +145,28 @@ if (privacyLink && privacyModal && privacyOverlay && closePrivacyBtn) {
       }, 3000);
     });
     
-    // Opcional: Cerrar si hacen clic en el fondo oscuro antes de tiempo
     rewardOverlay.addEventListener('click', () => {
         rewardPopup.classList.remove('show');
         rewardOverlay.classList.remove('show');
-        // (El botón se actualizaría igual por el timeout o podrías forzarlo aquí)
     });
   }
 
-  /* ===========================================================
-     LÓGICA MODO OSCURO
-     =========================================================== */
   const darkModeToggle = document.getElementById('dark-mode-toggle');
   const body = document.body;
 
-  // 1. Verificar si ya estaba activo antes (persistencia)
   if (localStorage.getItem('darkMode') === 'enabled') {
     body.classList.add('dark-mode');
     if(darkModeToggle) darkModeToggle.checked = true;
   }
 
-  // 2. Evento al cambiar el switch
   if (darkModeToggle) {
     darkModeToggle.addEventListener('change', () => {
       if (darkModeToggle.checked) {
         body.classList.add('dark-mode');
-        localStorage.setItem('darkMode', 'enabled'); // Guardar preferencia
+        localStorage.setItem('darkMode', 'enabled');
       } else {
         body.classList.remove('dark-mode');
-        localStorage.setItem('darkMode', 'disabled'); // Guardar preferencia
+        localStorage.setItem('darkMode', 'disabled');
       }
     });
   }

@@ -1,25 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
-  /* ===== Lógica del Header (Menú hamburguesa y Popover de Perfil) ===== */
   const header = document.querySelector('header');
   const nav = header?.querySelector('nav');
   const toggleBtn = header?.querySelector('.menu-toggle');
   const perfilBtn = document.getElementById('perfilBtn');
   const popover = document.getElementById('perfilPopover');
 
-  // 1. Lógica para el Menú Hamburguesa
   if (toggleBtn && nav) {
     toggleBtn.addEventListener('click', (e) => {
-      e.stopPropagation(); // Evita que el clic se propague
+      e.stopPropagation();
       nav.classList.toggle('open');
       toggleBtn.setAttribute('aria-expanded', nav.classList.contains('open'));
     });
   }
 
-  // 2. Lógica para el Pop-up de Perfil
   if (perfilBtn && popover) {
     const openPopover = () => {
       const rect = perfilBtn.getBoundingClientRect();
-      popover.style.top = `${rect.bottom + 8}px`; // Ajusta la posición
+      popover.style.top = `${rect.bottom + 8}px`;
       popover.classList.add('open');
       perfilBtn.setAttribute('aria-expanded', 'true');
     };
@@ -30,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     perfilBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      e.stopPropagation(); // Evita que el clic se propague
+      e.stopPropagation();
       if (nav && nav.classList.contains('open')) {
         nav.classList.remove('open');
         toggleBtn?.setAttribute('aria-expanded', 'false');
@@ -39,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-    // 3. Lógica para el dropdown de Sede
   const dropdownContainer = document.querySelector('.dropdown-container');
   if (dropdownContainer) {
     const toggle = dropdownContainer.querySelector('.dropdown-toggle');
@@ -60,10 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
- /* ===== Lógica de la Página de Edición  ===== */
-  
-  // 1. Carga de Foto (US22)
-  // Corrección de IDs para que coincidan con tu HTML
   const photoInput = document.getElementById('photo-upload'); 
   const photoPreview = document.getElementById('photo-preview');
 
@@ -80,41 +72,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. Guardar Cambios (US03)
   const editProfileForm = document.getElementById('edit-profile-form');
-  // Necesitamos el botón de guardar porque está FUERA del form en tu HTML
   const saveBtn = document.querySelector('.form-actions .btn--primary');
 
   if (saveBtn && editProfileForm) {
     saveBtn.addEventListener('click', (e) => {
-      e.preventDefault(); // Evita recarga directa
+      e.preventDefault();
       
-      // Aquí podrías validar campos si quisieras
-      // Simulación de éxito
       alert("✅ ¡Perfil actualizado correctamente!");
-      
-      // Redirección al Perfil para ver los cambios
+
       window.location.href = "Profile.html";
     });
   }
 
-  // 3. Eliminar Perfil (US10)
   const deleteBtn = document.querySelector('.btn--danger');
   
   if (deleteBtn) {
     deleteBtn.addEventListener('click', () => {
-      // Confirmación de seguridad
       const confirmacion = confirm("⚠️ ¿Estás seguro de que quieres eliminar tu cuenta?\n\nEsta acción no se puede deshacer y perderás tu historial.");
       
       if (confirmacion) {
         alert("🗑️ Tu cuenta ha sido eliminada.");
-        // Redirigir al inicio (Login/Landing)
         window.location.href = "index.html";
       }
     });
   }
 
-  /* ===== Lógica de Modals del Footer ===== */
   const termsLink = document.getElementById('terms-link');
   const termsModal = document.getElementById('terms-modal');
   const termsOverlay = document.getElementById('terms-overlay');

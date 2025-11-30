@@ -8,7 +8,6 @@ html,body{ margin:0; padding:0 }
 body{ font-family:system-ui,-apple-system,sans-serif; color:var(--ink); line-height:1.45; display: flex; flex-direction: column; min-height: 100vh; }
 a, button { color:inherit; text-decoration:none }
 
-/* ===== Header (ESTILO UNIFICADO) ===== */
 header{ position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:10px 18px; background:rgba(255,255,255,.92); backdrop-filter:saturate(180%) blur(10px); border-bottom:1px solid var(--line); }
 .Logo{ height:64px; }
 header nav{ display:flex; gap:16px; font-weight:600; }
@@ -19,7 +18,6 @@ header nav .Perfil{ background:var(--primary); color:#fff; padding:8px 16px; bor
 header nav .Perfil.active, .Perfil:hover{ background: #1aad6b;}
 .menu-toggle{ display:none; border:1px solid var(--line); background:#fff; border-radius:12px; padding:8px 10px; font-size:18px; line-height:1; cursor:pointer; }
 
-/* ===== Popover de Perfil (CORREGIDO Y COMPLETO) ===== */
 .profile-popover{ position:fixed; top:72px; right:18px; width:260px; background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow); padding:12px 14px; z-index:80; display:none; }
 .profile-popover.open{ display:block; }
 .profile-popover__header{ display:flex; justify-content:center; padding:6px 0 10px; }
@@ -29,13 +27,11 @@ header nav .Perfil.active, .Perfil:hover{ background: #1aad6b;}
 .profile-popover__list a:hover{ background:#f8fafc; }
 .profile-popover__list a.active-profile-link { color: var(--primary-strong); font-weight: 600; }
 
-
-
 .btn-logout {
-  display: block; /* Le decimos que ocupe su propia línea */
-  width: 80%; /* Mantenemos el ancho que definiste */
-  margin-left: auto; /* Margen automático a la izquierda */
-  margin-right: auto; /* Margen automático a la derecha */
+  display: block;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
   padding: 10px 12px;
   border-radius: 10px;
   border: 0;
@@ -43,12 +39,11 @@ header nav .Perfil.active, .Perfil:hover{ background: #1aad6b;}
   color: #fff;
   font-weight: 700;
   cursor: pointer;
-  text-align: center; /* Asegura que el texto dentro del botón esté centrado */
+  text-align: center;
 }
 
 .btn-logout:hover{ background:var(--primary-strong); }
 
-/* ===== Página de Ayuda / Chatbot ===== */
 .help-page { display: flex; justify-content: center; align-items: center; padding: 40px 24px; flex-grow: 1; background: linear-gradient(160deg, #d1fae5 0%, #dbeafe 100%); }
 .chat-container { width: 100%; max-width: 800px; height: 75vh; background-color: var(--bg); border-radius: var(--radius); box-shadow: 0 0 0 8px rgba(255,255,255,0.3), var(--shadow); border: 1px solid rgba(0,0,0,0.1); display: flex; flex-direction: column; }
 .chat-container__title { text-align: center; font-size: 24px; padding: 20px; margin: 0; }
@@ -69,7 +64,7 @@ header nav .Perfil.active, .Perfil:hover{ background: #1aad6b;}
 .message-form{
   position: sticky; bottom: 0;
   display: grid;
-  grid-template-columns: 1fr auto;   /* campo (crece) + botón (auto) */
+  grid-template-columns: 1fr auto;
   align-items: center;
   gap: 10px;
   padding: 12px;
@@ -78,22 +73,20 @@ header nav .Perfil.active, .Perfil:hover{ background: #1aad6b;}
   border-radius: 16px;
 }
 
-/* El wrapper del input NO debe forzar ancho; que pueda encogerse */
 .input-wrapper{
   display: flex;
   align-items: center;
   gap: 8px;
-  min-width: 0;                 /* <- clave para que el input se encoja */
+  min-width: 0;
   border: none;
   background: #f8fafc;
   border-radius: 16px;
   padding: 4px 6px;
 }
 
-/* El input ocupa todo el espacio disponible y puede encogerse */
 #message-input{
   flex: 1 1 auto;
-  min-width: 0;                 /* <- sin esto “empuja” al botón */
+  min-width: 0;
   border: none;
   background: transparent;
   padding: 12px 10px;
@@ -101,7 +94,6 @@ header nav .Perfil.active, .Perfil:hover{ background: #1aad6b;}
   outline: none;
 }
 
-/* Botón enviar con ancho flexible pero sin desbordar */
 .send-btn{
   flex: 0 0 auto;
   height: 44px;
@@ -112,10 +104,9 @@ header nav .Perfil.active, .Perfil:hover{ background: #1aad6b;}
   color: #fff;
   font-weight: 600;
   cursor: pointer;
-  white-space: nowrap;          /* para que no salte de línea */
+  white-space: nowrap;
 }
 
-/* Ícono de adjuntar */
 .attach-btn{ background: none; border: none; padding: 8px; cursor: pointer; }
 .attach-btn svg{ width: 24px; height: 24px; fill: var(--muted); }
 
@@ -141,7 +132,6 @@ footer article a:hover{ text-decoration:underline }
 footer hr{ grid-area:line; border:none; border-top:1px solid var(--primary); margin:8px 0 10px }
 footer small{ grid-area:copy; color:#8F8C8C; text-align:center }
 
-/* ====== Modal de Términos y Condiciones ====== */
 .overlay {
   position: fixed;
   top: 0;
@@ -153,13 +143,12 @@ footer small{ grid-area:copy; color:#8F8C8C; text-align:center }
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease;
-  /* ✨ CORRECCIÓN CLAVE: Permite hacer clic a través del overlay cuando está oculto ✨ */
   pointer-events: none;
 }
 .overlay.visible {
   opacity: 1;
   visibility: visible;
-  pointer-events: auto; /* Reactiva los clics cuando está visible */
+  pointer-events: auto;
 }
 
 .modal {
@@ -174,11 +163,11 @@ footer small{ grid-area:copy; color:#8F8C8C; text-align:center }
   flex-direction: column;
   transform: translateY(100%);
   transition: transform 0.4s ease-out;
-  pointer-events: none; /* También ignora clics cuando está oculto */
+  pointer-events: none;
 }
 .modal.visible {
   transform: translateY(0);
-  pointer-events: auto; /* Reactiva los clics cuando está visible */
+  pointer-events: auto;
 }
 
 .modal-header {
@@ -203,9 +192,6 @@ footer small{ grid-area:copy; color:#8F8C8C; text-align:center }
 .modal-content h4:first-child { margin-top: 0; }
 .modal-content ul { padding-left: 20px; margin: 0 0 16px; color: #000; }
 
-
-
-/* ===== Responsive ===== */
 @media (max-width: 860px) {
   .menu-toggle{ display:inline-block; }
   header nav{ display:none; position:absolute; right:18px; top:calc(100% + 8px); z-index: 60; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 12px; box-shadow: var(--shadow); flex-direction: column; gap: 8px; min-width: 220px; }
@@ -216,8 +202,8 @@ footer small{ grid-area:copy; color:#8F8C8C; text-align:center }
   footer { grid-template-columns: 1fr; grid-template-areas: "logo" "desc" "links1" "links2" "links3" "line" "copy"; }
 
   .input-wrapper {
-    flex-shrink: 1; /* Permite que el input-wrapper se encoja si es necesario */
-    min-width: 0;   /* Asegura que pueda reducir su tamaño */
+    flex-shrink: 1;
+    min-width: 0;
   }
 
   .message-form{ padding: 10px; gap: 8px; }

@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  /* ===== Menú hamburguesa (sin cambios) ===== */
   const header = document.querySelector('header');
   const nav = header?.querySelector('nav');
   const toggleBtn = header?.querySelector('.menu-toggle');
@@ -33,15 +32,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== Popover Perfil (CORREGIDO) ===== */
   const perfilBtn = document.getElementById('perfilBtn');
   const popover = document.getElementById('perfilPopover');
 
-  // Función simplificada para 'position: fixed'
   function openPopover() {
     const rect = perfilBtn.getBoundingClientRect();
-    const top = rect.bottom + 8; // Calcula la posición debajo del botón
-    popover.style.top = `${top}px`; // Actualiza solo la posición 'top'
+    const top = rect.bottom + 8;
+    popover.style.top = `${top}px`;
     
     popover.classList.add('open');
     popover.setAttribute('aria-hidden','false');
@@ -95,13 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
         perfilBtn.focus(); 
       }
     });
-
-    // ✨ LÍNEAS ELIMINADAS ✨
-    // Ya no cerramos el popover al hacer scroll o cambiar el tamaño de la ventana.
   }
 });
 
-/* ====== LÓGICA PARA EL MODAL DE TÉRMINOS Y CONDICIONES ====== */
 const termsLink = document.getElementById('terms-link');
 const termsModal = document.getElementById('terms-modal');
 const termsOverlay = document.getElementById('terms-overlay');
@@ -118,20 +111,16 @@ const closeModal = () => {
 };
 
 if (termsLink && termsModal && termsOverlay && closeModalBtn) {
-  // Abrir modal al hacer clic en el enlace
   termsLink.addEventListener('click', (e) => {
     e.preventDefault();
     openModal();
   });
 
-  // Cerrar modal con el botón de flecha
   closeModalBtn.addEventListener('click', closeModal);
 
-  // Cerrar modal al hacer clic en el fondo oscuro
   termsOverlay.addEventListener('click', closeModal);
 }
 
-/* ====== LÓGICA PARA EL MODAL DE POLÍTICA DE PRIVACIDAD ====== */
 const privacyLink = document.getElementById('privacy-link');
 const privacyModal = document.getElementById('privacy-modal');
 const privacyOverlay = document.getElementById('privacy-overlay');
@@ -148,15 +137,12 @@ const closePrivacyModal = () => {
 };
 
 if (privacyLink && privacyModal && privacyOverlay && closePrivacyBtn) {
-  // Abrir modal al hacer clic en el enlace
   privacyLink.addEventListener('click', (e) => {
     e.preventDefault();
     openPrivacyModal();
   });
 
-  // Cerrar modal con el botón de flecha
   closePrivacyBtn.addEventListener('click', closePrivacyModal);
 
-  // Cerrar modal al hacer clic en el fondo oscuro
   privacyOverlay.addEventListener('click', closePrivacyModal);
 }

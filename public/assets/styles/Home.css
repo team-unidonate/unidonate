@@ -1,4 +1,3 @@
-/* ===== Reset / Vars ===== */
 *{ box-sizing:border-box }
 html,body{ margin:0; padding:0 }
 :root{
@@ -17,7 +16,6 @@ body{
 }
 a{ color:inherit; text-decoration:none }
 
-/* ===== Header (igual a landing) ===== */
 header{
   position:sticky; top:0; z-index:50;
   display:flex; align-items:center; justify-content:space-between;
@@ -36,13 +34,11 @@ header nav .Perfil{
 }
 header nav .Perfil:hover{ background:var(--primary-strong) }
 
-/* Botón hamburguesa */
 .menu-toggle{
   display:none; border:1px solid var(--line); background:#fff;
   border-radius:12px; padding:8px 10px; font-size:18px; line-height:1; cursor:pointer;
 }
 
-/* Header responsive: menú tarjetita debajo */
 @media (max-width: 860px){
   .Logo{ height:48px }
   .menu-toggle{ display:inline-block }
@@ -56,11 +52,9 @@ header nav .Perfil:hover{ background:var(--primary-strong) }
   header nav a:hover{ background:#f8fafc }
 }
 
-/* ===== Popover Perfil ===== */
-/* ===== Popover Perfil ===== */
 .profile-popover{
-  position: fixed; /* <-- ESTE ES EL CAMBIO CLAVE */
-  top: 72px; /* <-- Le damos un top inicial */
+  position: fixed;
+  top: 72px;
   right: 18px; 
   width: 260px; 
   background: #fff; 
@@ -82,10 +76,10 @@ header nav .Perfil:hover{ background:var(--primary-strong) }
 .profile-list a{ display:block; padding:10px 10px; border-radius:10px; color:var(--ink); }
 .profile-list a:hover{ background:#f8fafc; }
 .btn-logout {
-  display: block; /* Le decimos que ocupe su propia línea */
-  width: 80%; /* Mantenemos el ancho que definiste */
-  margin-left: auto; /* Margen automático a la izquierda */
-  margin-right: auto; /* Margen automático a la derecha */
+  display: block;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
   padding: 10px 12px;
   border-radius: 10px;
   border: 0;
@@ -93,10 +87,10 @@ header nav .Perfil:hover{ background:var(--primary-strong) }
   color: #fff;
   font-weight: 700;
   cursor: pointer;
-  text-align: center; /* Asegura que el texto dentro del botón esté centrado */
+  text-align: center;
 }
 .btn-logout:hover{ background:var(--primary-strong); }
-/* Flechita */
+
 .profile-popover::before{
   content:""; position:absolute; top:-8px; right:24px;
   border-width:8px; border-style:solid; border-color:transparent transparent #fff transparent;
@@ -109,15 +103,12 @@ header nav .Perfil:hover{ background:var(--primary-strong) }
   .profile-popover{ right:18px; top:calc(72px + 8px); }
 }
 
-/* ===== Hero ===== */
 .hero{
   padding:18px 18px;
   background:linear-gradient(135deg,#c8f2da,#bde0ff);
   border-bottom:1px solid var(--line);
 }
 .hero h1{ margin:0; font-size:44px; font-weight:800 }
-
-/* ===== Videos ===== */
 
 .videos-section {
   display: grid;
@@ -147,7 +138,7 @@ header nav .Perfil:hover{ background:var(--primary-strong) }
 .video-wrapper {
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%; /* Proporción 16:9 exacta */
+  padding-bottom: 56.25%;
   height: 0;
   border-radius: 12px;
   overflow: hidden;
@@ -163,14 +154,12 @@ header nav .Perfil:hover{ background:var(--primary-strong) }
   border: 0;
 }
 
-/* Responsive */
 @media (max-width: 980px) {
   .videos-section {
     grid-template-columns: 1fr;
   }
 }
 
-/* ===== Publicaciones ===== */
 .publications-section{ padding:22px 18px }
 .publications-section h2{ margin:0 0 12px; font-size:22px }
 .publications-grid{ display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:26px; }
@@ -185,7 +174,6 @@ header nav .Perfil:hover{ background:var(--primary-strong) }
 }
 .item-card span{ font-weight:700; color:#0f172a }
 
-/* ===== Footer (claro) ===== */
 footer{
   display:grid;
   grid-template-columns:auto 1fr 1fr 1fr;
@@ -207,7 +195,7 @@ footer article a{ display:block; color:#8F8C8C; margin:4px 0 }
 footer article a:hover{ text-decoration:underline }
 footer hr{ grid-area:line; border:none; border-top:1px solid var(--primary); margin:8px 0 10px }
 footer small{ grid-area:copy; color:#8F8C8C; text-align:center }
-/* ====== Modal de Términos y Condiciones ====== */
+
 .overlay {
   position: fixed;
   top: 0;
@@ -219,13 +207,12 @@ footer small{ grid-area:copy; color:#8F8C8C; text-align:center }
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease;
-  /* ✨ CORRECCIÓN CLAVE: Permite hacer clic a través del overlay cuando está oculto ✨ */
   pointer-events: none;
 }
 .overlay.visible {
   opacity: 1;
   visibility: visible;
-  pointer-events: auto; /* Reactiva los clics cuando está visible */
+  pointer-events: auto;
 }
 
 .modal {
@@ -240,11 +227,11 @@ footer small{ grid-area:copy; color:#8F8C8C; text-align:center }
   flex-direction: column;
   transform: translateY(100%);
   transition: transform 0.4s ease-out;
-  pointer-events: none; /* También ignora clics cuando está oculto */
+  pointer-events: none;
 }
 .modal.visible {
   transform: translateY(0);
-  pointer-events: auto; /* Reactiva los clics cuando está visible */
+  pointer-events: auto;
 }
 
 .modal-header {
@@ -269,8 +256,6 @@ footer small{ grid-area:copy; color:#8F8C8C; text-align:center }
 .modal-content h4:first-child { margin-top: 0; }
 .modal-content ul { padding-left: 20px; margin: 0 0 16px; color: #000; }
 
-
-/* ===== Responsive ===== */
 @media (max-width: 980px){
   .videos-section{ grid-template-columns:1fr; }
   .publications-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
