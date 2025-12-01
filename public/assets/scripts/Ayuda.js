@@ -235,7 +235,7 @@ FIN DEL CONTEXTO.
 `;
 
     async function getBotResponse(userInput) {
-      const apiKey = "AIzaSyCF0zd-AIzaSyBwKymhB6LYJSJRkCI80Hav3QWjUJjGu0E";
+      const apiKey = "AIzaSyBwKymhB6LYJSJRkCI80Hav3QWjUJjGu0E";
 
       const url = `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
